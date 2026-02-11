@@ -1,0 +1,94 @@
+/* ProjectCard Styles - Refined based on 380x262 16px semibold request */
+
+.card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    /* Increased lift */
+}
+
+.card:hover .imageWrapper {
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    /* Proximity depth */
+    transform: scale(1.03);
+}
+
+/* Image Wrapper with fixed aspect ratio */
+.imageWrapper {
+    width: 100%;
+    aspect-ratio: 380 / 262;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+    /* Increased from 12px */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+    /* Added base depth */
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.imageWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Restored Placeholder Styles */
+.imagePlaceholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-surface);
+    padding: 16px;
+}
+
+.placeholderText {
+    font-size: 14px;
+    color: #888;
+    text-align: center;
+    font-weight: 500;
+}
+
+.card:hover .imageWrapper img {
+    transform: scale(1.02);
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    /* Space title and icon */
+    align-items: center;
+}
+
+/* Typography Update: 16px Semibold */
+.title {
+    font-size: 16px;
+    font-weight: 600;
+    /* Semibold */
+    color: var(--text-primary);
+    margin: 0;
+}
+
+/* Link Icon restored */
+.linkIcon {
+    color: var(--text-secondary);
+    /* or inherit? */
+    transition: transform 0.2s ease;
+    width: 14px;
+    height: 14px;
+}
+
+.card:hover .linkIcon {
+    color: var(--text-primary);
+    transform: translate(2px, -2px);
+}

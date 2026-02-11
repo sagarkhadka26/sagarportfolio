@@ -1,0 +1,131 @@
+/* Removed pageHeader and pageTitle as they are no longer used */
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    /* Swapped: Bio on left, Photo on right */
+    gap: 80px;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.photoWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.photoContainer {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 0.8;
+    background-color: var(--bg-outer);
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--border);
+}
+
+.aboutImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.bioHeading {
+    font-size: 48px;
+    line-height: 1.1;
+    margin-bottom: 32px;
+    font-weight: 700;
+}
+
+.bioText {
+    font-size: 18px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.toolsSection {
+    margin-top: 48px;
+}
+
+.toolsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    /* Reduced from 24px */
+}
+
+.toolIconWrapper {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+    padding: 6px;
+    /* Reduced from 10px to make icons larger */
+    position: relative;
+    /* For tooltip */
+    cursor: default;
+}
+
+.toolIconWrapper:hover {
+    transform: translateY(-5px);
+    border-color: var(--text-primary);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.tooltip {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background-color: var(--text-primary);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid var(--text-primary);
+}
+
+.toolIconWrapper:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.toolIconImg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+}

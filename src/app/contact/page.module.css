@@ -1,0 +1,194 @@
+.pageHeader {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.pageTitle {
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    color: var(--text-primary);
+}
+
+.pageSubtitle {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin: 16px auto 0;
+    max-width: 600px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.contactCard,
+.socialCard {
+    padding: 60px;
+    background-color: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    height: 100%;
+}
+
+/* Location Indicator */
+.locationInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+}
+
+.locationDot {
+    width: 8px;
+    height: 8px;
+    background-color: #10B981;
+    /* Green dot */
+    border-radius: 50%;
+}
+
+.contactHeading,
+.socialHeading {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 40px;
+    letter-spacing: -0.02em;
+}
+
+.contactMethods {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.methodItem {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.methodLabel {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+}
+
+.emailWrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.emailLink,
+.methodLink {
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--text-primary);
+    transition: color 0.2s ease;
+    word-break: break-all;
+}
+
+.emailLink:hover,
+.methodLink:hover {
+    color: var(--text-secondary);
+}
+
+.copyBtn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copyBtn:hover {
+    color: var(--text-primary);
+}
+
+.socialGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.socialLink {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background-color: var(--bg-outer);
+    border: 1px solid transparent;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.socialLink:hover {
+    background-color: white;
+    border-color: var(--text-primary);
+    transform: translateX(4px);
+}
+
+.socialIcon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+}
+
+.socialName {
+    font-size: 16px;
+    font-weight: 500;
+    flex-grow: 1;
+}
+
+.arrowIcon {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.2s ease;
+}
+
+.socialLink:hover .arrowIcon {
+    opacity: 0.5;
+    transform: translateX(0);
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contactCard,
+    .socialCard {
+        padding: 40px;
+    }
+
+    .emailLink,
+    .methodLink {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pageTitle {
+        font-size: 40px;
+    }
+
+    .emailLink,
+    .methodLink {
+        font-size: 20px;
+    }
+}

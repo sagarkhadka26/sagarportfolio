@@ -1,0 +1,131 @@
+.pageHeader {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.pageTitle {
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    color: var(--text-primary);
+}
+
+.pageSubtitle {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin: 16px auto 0;
+    max-width: 600px;
+}
+
+.sectionFull {
+    margin-bottom: 60px;
+}
+
+.experienceSectionFull {
+    margin-bottom: 60px;
+}
+
+.experienceHorizontal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.horizontalEntry {
+    display: flex;
+    flex-direction: column;
+}
+
+.educationVertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.centeredEntry {
+    margin-bottom: 32px;
+}
+
+.centeredPills {
+    display: flex;
+    justify-content: center;
+}
+
+.pillGridCentered {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    max-width: 800px;
+}
+
+.resumeSection {
+    margin-bottom: 40px;
+}
+
+.sectionHeading {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+}
+
+.centeredHeading {
+    text-align: center;
+}
+
+.entry {
+    margin-bottom: 32px;
+}
+
+.entryTitle {
+    font-size: 18px;
+    /* Reduced from 20px */
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.entryCompany {
+    font-size: 14px;
+    /* Reduced from 16px */
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.entryDesc {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.pillGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.pill {
+    padding: 8px 20px;
+    background-color: white;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 14px;
+}
+
+.pdfViewer {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 1024px) {
+    .resumeGrid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}

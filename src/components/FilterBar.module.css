@@ -1,0 +1,57 @@
+.filterBar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pill {
+    padding: 8px 20px;
+    border-radius: var(--radius-pill);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    font-family: var(--font-family);
+    letter-spacing: var(--letter-spacing);
+    color: var(--text-secondary);
+    background: transparent;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    position: relative;
+    white-space: nowrap;
+}
+
+.pill:hover:not(:disabled) {
+    color: var(--text-primary);
+    border-color: var(--border);
+}
+
+.pill.selected {
+    color: var(--bg-white);
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+.pill.comingSoon {
+    color: var(--text-muted);
+    cursor: default;
+    opacity: 0.6;
+}
+
+.pill.comingSoon:hover {
+    color: var(--text-muted);
+    border-color: transparent;
+}
+
+.badge {
+    font-size: 10px;
+    font-weight: var(--font-semibold);
+    background: var(--border);
+    color: var(--text-muted);
+    padding: 1px 6px;
+    border-radius: var(--radius-pill);
+    margin-left: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}

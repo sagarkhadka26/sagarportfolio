@@ -1,0 +1,105 @@
+/* Navbar Styles - Refined based on 1440px design */
+.navbar {
+    /* No specific container styles needed, handled by parent */
+}
+
+.navLinks {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    /* Specific Requirement */
+    list-style: none;
+    background-color: transparent;
+    /* No background on container mentioned, or is there? Screenshot shows pills. */
+    /* If pills are individual: */
+    padding: 0;
+    margin: 0;
+}
+
+.navLink {
+    height: 37px;
+    /* Specific Requirement */
+    padding: 0 20px;
+    /* Specific Requirement (assuming 20px X, centered Y) */
+    border-radius: 37px;
+    /* Pill shape */
+    font-size: 14px;
+    /* Specific Requirement */
+    font-weight: 500;
+    /* Medium */
+    color: var(--text-primary);
+    text-decoration: none;
+    display: flex;
+    /* Centering */
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    /* Optional: border on links? Design implies pills. assume border or bg */
+    background-color: var(--bg-surface);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    /* Prevent wrapping */
+}
+
+.navLink:hover {
+    background-color: var(--bg-outer);
+    /* darker on hover */
+    border-color: var(--text-primary);
+}
+
+.navLink.active {
+    background-color: var(--text-primary);
+    /* Black active state */
+    color: white;
+    border-color: var(--text-primary);
+}
+
+/* Hamburger - Hide on desktop (1440px) */
+.menuButton {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: var(--space-sm);
+    cursor: pointer;
+    z-index: 110;
+}
+
+.menuLine {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-primary);
+    border-radius: 2px;
+    transition: all var(--transition-base);
+}
+
+@media (max-width: 768px) {
+    .menuButton {
+        display: flex;
+    }
+
+    .navLinks {
+        display: none;
+        position: fixed;
+        top: 70px;
+        left: 20px;
+        right: 20px;
+        flex-direction: column;
+        padding: 20px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: var(--shadow-lg);
+        z-index: 100;
+    }
+
+    .navLinks.open {
+        display: flex;
+    }
+
+    .navLink {
+        width: 100%;
+        height: 48px;
+        /* Larger hit area on mobile */
+        justify-content: center;
+    }
+}

@@ -1,0 +1,78 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    font-family: var(--font-family);
+    letter-spacing: var(--letter-spacing);
+    font-weight: var(--font-medium);
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    border: 1.5px solid transparent;
+    white-space: nowrap;
+}
+
+/* Sizes */
+.sm {
+    padding: 8px 18px;
+    font-size: var(--text-sm);
+}
+
+.md {
+    padding: 12px 28px;
+    font-size: var(--text-sm);
+}
+
+.lg {
+    padding: 16px 36px;
+    font-size: var(--text-base);
+}
+
+/* Variants */
+.primary {
+    background-color: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.primary:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.ghost {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--border);
+}
+
+.ghost:hover {
+    border-color: var(--text-primary);
+    background-color: var(--bg-white);
+    transform: translateY(-1px);
+}
+
+.outline {
+    background: var(--bg-white);
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+}
+
+.outline:hover {
+    background-color: var(--text-primary);
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* Icon */
+.icon {
+    display: inline-flex;
+    align-items: center;
+    transition: transform var(--transition-base);
+}
+
+.button:hover .icon {
+    transform: translateX(2px);
+}
