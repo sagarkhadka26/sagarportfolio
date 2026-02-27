@@ -1,131 +1,272 @@
 .pageHeader {
     text-align: center;
-    margin-bottom: 60px;
-}
-
-.pageTitle {
-    font-size: 64px;
-    font-weight: 700;
-    letter-spacing: -0.05em;
-    color: var(--text-primary);
-}
-
-.pageSubtitle {
-    font-size: 18px;
-    color: var(--text-secondary);
-    margin: 16px auto 0;
-    max-width: 600px;
-}
-
-.sectionFull {
-    margin-bottom: 60px;
-}
-
-.experienceSectionFull {
-    margin-bottom: 60px;
-}
-
-.experienceHorizontal {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-}
-
-.horizontalEntry {
-    display: flex;
-    flex-direction: column;
-}
-
-.educationVertical {
+    margin-bottom: 40px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
 }
 
-.centeredEntry {
-    margin-bottom: 32px;
+.pageTitle {
+    font-size: clamp(48px, 8vw, 84px);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    line-height: 1;
 }
 
-.centeredPills {
+.headerRow {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    width: 100%;
 }
 
-.pillGridCentered {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
-    max-width: 800px;
+.pageSubtitle {
+    font-size: 20px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    max-width: 900px;
+    margin-inline: auto;
 }
 
-.resumeSection {
-    margin-bottom: 40px;
+/* Grid Layout */
+.resumeGrid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 80px;
+    align-items: start;
+}
+
+/* Timeline Components */
+.section {
+    margin-bottom: 60px;
 }
 
 .sectionHeading {
-    font-size: 24px;
+    font-size: 12px;
     font-weight: 700;
-    margin-bottom: 32px;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 8px;
-}
-
-.centeredHeading {
-    text-align: center;
-}
-
-.entry {
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
     margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sectionHeading::after {
+    content: '';
+    height: 1px;
+    flex-grow: 1;
+    background: var(--border);
+    opacity: 0.5;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    position: relative;
+    padding-left: 32px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+    opacity: 0.3;
+}
+
+.timelineItem {
+    position: relative;
+}
+
+.timelineDot {
+    position: absolute;
+    left: -32px;
+    top: 8px;
+    width: 16px;
+    height: 16px;
+    background: var(--bg-surface);
+    border: 2px solid var(--text-primary);
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.entryHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+    gap: 16px;
 }
 
 .entryTitle {
-    font-size: 18px;
-    /* Reduced from 20px */
+    font-size: 24px;
     font-weight: 600;
-    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.entryPeriod {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    white-space: nowrap;
 }
 
 .entryCompany {
-    font-size: 14px;
-    /* Reduced from 16px */
-    color: var(--text-muted);
-    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
 }
 
 .entryDesc {
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 640px;
+}
+
+/* Sidebar Styling */
+.sidebarSection {
+    margin-bottom: 48px;
+}
+
+.sidebarHeading {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 24px;
 }
 
 .pillGrid {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 8px;
 }
 
 .pill {
-    padding: 8px 20px;
-    background-color: white;
-    border: 1px solid var(--border);
-    border-radius: 100px;
+    padding: 8px 16px;
     font-size: 14px;
+    font-weight: 500;
+    background: #F4F4F4;
+    color: var(--text-primary);
+    border-radius: 100px;
+    transition: all 0.3s ease;
+}
+
+.pill:hover {
+    background: var(--text-primary);
+    color: white;
+}
+
+.toolList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.toolItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    background: #F8F8F8;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.toolItem:hover {
+    background: white;
+    transform: translateX(4px);
+    box-shadow: var(--shadow-sm);
+}
+
+.toolIcon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    padding: 4px;
+}
+
+.toolName {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.downloadSection {
+    margin-bottom: 40px;
 }
 
 .pdfViewer {
-    margin-top: 20px;
     width: 100%;
     max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline: auto;
+    margin-top: 24px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f1f1f1;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+}
+
+.contactSection {
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
 }
 
 @media (max-width: 1024px) {
     .resumeGrid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 60px;
+    }
+
+    .pageHeader {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .pageTitle {
+        font-size: clamp(40px, 10vw, 64px);
+    }
+}
+
+@media (max-width: 768px) {
+    .entryHeader {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .timeline {
+        padding-left: 24px;
+    }
+
+    .timelineDot {
+        left: -24px;
+    }
+
+    .timeline::before {
+        left: 3px;
     }
 }

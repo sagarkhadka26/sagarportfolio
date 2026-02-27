@@ -1,8 +1,7 @@
 import { Inter } from 'next/font/google';
-import './globals.css';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import Loader from '@/components/Loader';
+import '@/styles/globals.css';
+import { ToastProvider } from '@/components/Toast';
+import SmoothScroll from '@/components/SmoothScroll';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -24,10 +23,13 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet" />
       </head>
       <body>
-        <Loader />
-        <div className="page-wrapper">
-          {children}
-        </div>
+        <ToastProvider>
+          <SmoothScroll>
+            <div className="page-wrapper">
+              {children}
+            </div>
+          </SmoothScroll>
+        </ToastProvider>
       </body>
     </html>
   );

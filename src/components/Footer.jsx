@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { socials, contactInfo } from '@/data/socials';
+import { socials, contactInfo } from '@/lib/socials';
 import ScrollReveal from './ScrollReveal';
 import styles from './Footer.module.css';
 
@@ -55,13 +55,7 @@ export default function Footer() {
 
                 {/* Copyright & Divider with Sparkle */}
                 <div className={styles.footerBottom}>
-                    <div className={styles.divider}>
-                        <div className={styles.sparkle}>
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <path d="M20 0C20 11.0457 11.0457 20 0 20C11.0457 20 20 28.9543 20 40C20 28.9543 28.9543 20 40 20C28.9543 20 20 11.0457 20 0Z" fill="white" />
-                            </svg>
-                        </div>
-                    </div>
+                    <div className={styles.divider} />
                     <div className={styles.copyright}>
                         <span>© Sagar Kumar Khadka 2026. All rights reserved</span>
                     </div>

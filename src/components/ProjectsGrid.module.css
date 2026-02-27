@@ -4,24 +4,16 @@
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 60px 24px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 80px 48px;
     margin-top: 60px;
     min-height: 100px;
-    /* Avoid pushing empty state down too far */
 }
 
 .emptyState {
     text-align: center;
     padding: 20px 0 60px;
-    /* Pushed content up */
     color: var(--text-muted);
-}
-
-.emptyIcon {
-    font-size: 40px;
-    margin-bottom: 16px;
-    opacity: 0.5;
 }
 
 @media (max-width: 1024px) {
@@ -36,5 +28,12 @@
         grid-template-columns: 1fr;
         gap: 20px;
         margin-top: 30px;
+    }
+}
+
+@media (min-width: 1800px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 60px 32px;
     }
 }

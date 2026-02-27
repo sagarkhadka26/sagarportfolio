@@ -1,7 +1,10 @@
-import Navbar from '@/components/Navbar';
+import Image from 'next/image';
+import PageBox from '@/components/PageBox';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
-import { projects, getProjectBySlug } from '@/data/projects';
+import ScrollReveal from '@/components/ScrollReveal';
+import TextReveal from '@/components/TextReveal';
+import { projects, getProjectBySlug } from '@/lib/projects';
 import styles from './page.module.css';
 
 export function generateStaticParams() {
@@ -28,15 +31,14 @@ export default async function ProjectDetail({ params }) {
     if (!project) {
         return (
             <>
-                <div className={styles.pageCard}>
-                    <Navbar />
+                <PageBox>
                     <div className={styles.notFound}>
                         <h1>Project not found</h1>
                         <Button href="/work" variant="primary">
                             Back to Work
                         </Button>
                     </div>
-                </div>
+                </PageBox>
                 <Footer />
             </>
         );
@@ -50,72 +52,112 @@ export default async function ProjectDetail({ params }) {
 
     return (
         <>
-            <div className={styles.pageCard}>
-                <Navbar />
-            </div>
+            <PageBox>
+                {/* Top Back Button just below logo level */}
+                <div className={styles.topNav}>
+                    <Button href="/work" variant="ghost" size="sm" className={styles.backLink}>
+                        ← Back to Work
+                    </Button>
+                </div>
 
-            <article className={styles.article}>
-                <div className="container">
+                <article className={styles.article}>
                     {/* Project Header */}
                     <div className={styles.projectHeader}>
-                        <span className={styles.category}>{project.category}</span>
-                        <h1 className={styles.title}>{project.title}</h1>
-                        <div className={styles.meta}>
-                            <span>{project.year}</span>
-                            <span className={styles.metaDivider}>•</span>
-                            <span>{project.tools.join(', ')}</span>
-                        </div>
+                        <ScrollReveal>
+                            <span className={styles.category}>{project.category}</span>
+                        </ScrollReveal>
+                        <TextReveal
+                            text={project.title}
+                            tag="h1"
+                            className={styles.title}
+                            delay={100}
+                        />
+                        <ScrollReveal delay={500}>
+                            <div className={styles.meta}>
+                                <span>{project.year}</span>
+                                <span className={styles.metaDivider}>•</span>
+                                <span>{project.tools.join(', ')}</span>
+                            </div>
+                        </ScrollReveal>
                     </div>
 
                     {/* Hero Image */}
-                    <div className={styles.heroImage}>
-                        <div className={styles.imagePlaceholder}>
-                            <span>{project.title}</span>
+                    <ScrollReveal delay={200}>
+                        <div className={styles.heroImage}>
+                            {project.thumbnail ? (
+                                <Image
+                                    src={project.thumbnail}
+                                    alt={project.title}
+                                    width={1200}
+                                    height={800}
+                                    className={styles.projectImg}
+                                    priority
+                                />
+                            ) : (
+                                <div className={styles.imagePlaceholder}>
+                                    <span>{project.title}</span>
+                                </div>
+                            )}
                         </div>
-                    </div>
+                    </ScrollReveal>
 
                     {/* Description */}
-                    <div className={styles.description}>
-                        <p>{project.description}</p>
-                    </div>
+                    <ScrollReveal delay={300}>
+                        <div className={styles.description}>
+                            <p>{project.description}</p>
+                        </div>
+                    </ScrollReveal>
 
                     {/* External Link */}
                     {project.link && project.link !== '#' && (
-                        <div className={styles.linkSection}>
-                            <Button href={project.link} external variant="primary" size="md">
-                                View Live Project
-                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                    <path
-                                        d="M1 13L13 1M13 1H3M13 1V11"
-                                        stroke="currentColor"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                            </Button>
-                        </div>
+                        <ScrollReveal delay={400}>
+                            <div className={styles.linkSection}>
+                                <Button href={project.link} external variant="primary" size="md">
+                                    View Live Project
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                        <path
+                                            d="M1 13L13 1M13 1H3M13 1V11"
+                                            stroke="currentColor"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                </Button>
+                            </div>
+                        </ScrollReveal>
                     )}
 
-                    {/* Prev / Next Navigation */}
-                    <div className={styles.projectNav}>
-                        {prevProject ? (
-                            <Button href={`/work/${prevProject.slug}`} variant="ghost">
-                                ← {prevProject.title}
+                    {/* Bottom Back Button */}
+                    <div className={styles.bottomSection}>
+                        <ScrollReveal>
+                            <Button href="/work" variant="primary">
+                                Back to Projects
                             </Button>
-                        ) : (
-                            <div />
-                        )}
-                        {nextProject ? (
-                            <Button href={`/work/${nextProject.slug}`} variant="ghost">
-                                {nextProject.title} →
-                            </Button>
-                        ) : (
-                            <div />
-                        )}
+                        </ScrollReveal>
                     </div>
-                </div>
-            </article>
+
+                    {/* Prev / Next Navigation */}
+                    <ScrollReveal delay={500}>
+                        <div className={styles.projectNav}>
+                            {prevProject ? (
+                                <Button href={`/work/${prevProject.slug}`} variant="ghost">
+                                    ← {prevProject.title}
+                                </Button>
+                            ) : (
+                                <div />
+                            )}
+                            {nextProject ? (
+                                <Button href={`/work/${nextProject.slug}`} variant="ghost">
+                                    {nextProject.title} →
+                                </Button>
+                            ) : (
+                                <div />
+                            )}
+                        </div>
+                    </ScrollReveal>
+                </article>
+            </PageBox>
 
             <Footer />
         </>

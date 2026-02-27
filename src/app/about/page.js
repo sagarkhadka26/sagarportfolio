@@ -1,79 +1,257 @@
 'use client';
 
+import { useState, useEffect, useRef } from 'react';
 import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import PageBox from '@/components/PageBox';
+import TextReveal from '@/components/TextReveal';
+import Image from 'next/image';
+import Link from 'next/link';
+import { toolIcons } from '@/lib/toolIcons';
+import { socials } from '@/lib/socials';
 import styles from './page.module.css';
 
+function useCountUp(target, duration = 2000) {
+    const [count, setCount] = useState(0);
+    const [started, setStarted] = useState(false);
+    const ref = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && !started) {
+                    setStarted(true);
+                }
+            },
+            { threshold: 0.5 }
+        );
+        if (ref.current) observer.observe(ref.current);
+        return () => observer.disconnect();
+    }, [started]);
+
+    useEffect(() => {
+        if (!started) return;
+        let start = 0;
+        const step = target / (duration / 16);
+        const timer = setInterval(() => {
+            start += step;
+            if (start >= target) {
+                setCount(target);
+                clearInterval(timer);
+            } else {
+                setCount(Math.floor(start));
+            }
+        }, 16);
+        return () => clearInterval(timer);
+    }, [started, target, duration]);
+
+    return { count, ref };
+}
+
+function StatItem({ number, suffix, label }) {
+    const { count, ref } = useCountUp(number);
+    return (
+        <div className={styles.statItem} ref={ref}>
+            <span className={styles.statNumber}>{count}{suffix}</span>
+            <span className={styles.statLabel}>{label}</span>
+        </div>
+    );
+}
+
 export default function AboutPage() {
-    const toolIcons = [
-        { name: 'Adobe XD', src: '/assets/icon/xd.svg' },
-        { name: 'Photoshop', src: '/assets/icon/photoshop.svg' },
-        { name: 'Figma', src: '/assets/icon/figma.svg' },
-        { name: 'Framer', src: '/assets/icon/framer.svg' },
-        { name: 'Canva', src: '/assets/icon/canva.svg' },
-        { name: 'JavaScript', src: '/assets/icon/js.svg' },
-        { name: 'Flutter', src: '/assets/icon/flutter.svg' },
-        { name: 'Rive', src: '/assets/icon/rive.svg' },
+    const values = [
+        {
+            emoji: '🎯',
+            title: 'User-Centric',
+            desc: 'Designing with empathy, ensuring every pixel serves a purpose for the human on the other side.'
+        },
+        {
+            emoji: '💎',
+            title: 'Pixel-Perfect',
+            desc: 'A relentless obsession with detail, from spacing systems to micro-interactions and motion.'
+        },
+        {
+            emoji: '🧠',
+            title: 'Strategic Thinking',
+            desc: 'Beyond aesthetics — aligning design goals with business objectives for real-world impact.'
+        }
+    ];
+
+    const interests = [
+        { emoji: '🍵', label: 'Tea Lover' },
+        { emoji: '🎵', label: 'Music Lover' },
+        { emoji: '🏀', label: 'Basketball' },
+        { emoji: '🎬', label: 'Anime & Films' },
+        { emoji: '⛰️', label: 'Hiking' },
+        { emoji: '🎨', label: 'Drawing' },
     ];
 
     return (
         <>
             <PageBox>
-                <div className={styles.grid}>
-                    {/* Left: Bio */}
-                    <div className={styles.bio}>
-                        <ScrollReveal>
-                            <h2 className={styles.bioHeading}>Designer by day, <br />pixel-perfectionist by night. ✨</h2>
-                        </ScrollReveal>
-                        <ScrollReveal delay={100}>
-                            <p className={styles.bioText}>
-                                Hi, I&apos;m Sagar. I don&apos;t just design screens; I craft stories that users love to live in.
-                                Based in the heart of Nepal, I spend my time balancing clean minimal aesthetics with
-                                functional complexity.
-                            </p>
-                        </ScrollReveal>
-                        <ScrollReveal delay={200}>
-                            <p className={styles.bioText}>
-                                When I&apos;m not pushing pixels in Figma or prototyping slick animations, you&apos;ll probably
-                                find me exploring the latest UI trends or geeking out over motion design. I believe
-                                the best products aren&apos;t just used — they&apos;re felt.
-                            </p>
-                        </ScrollReveal>
+                {/* === Hero Header === */}
+                <div className={styles.pageHeader}>
+                    <TextReveal
+                        text="Design that speaks, interfaces that feel."
+                        tag="h1"
+                        className={styles.pageTitle}
+                        delay={100}
+                    />
+                    <ScrollReveal delay={300}>
+                        <p className={styles.pageSubtitle}>
+                            I&apos;m Sagar, a UI/UX Designer dedicated to crafting digital experiences that are as functional as they are beautiful.
+                        </p>
+                    </ScrollReveal>
+                </div>
 
-                        {/* Tools Section Integrated into Bio flow or below */}
-                        <ScrollReveal delay={300}>
-                            <div className={styles.toolsSection}>
-                                <div className={styles.toolsList}>
-                                    {toolIcons.map((tool, i) => (
-                                        <div key={i} className={styles.toolIconWrapper}>
-                                            <img
-                                                src={tool.src}
-                                                alt={tool.name}
-                                                className={styles.toolIconImg}
-                                            />
-                                            <span className={styles.tooltip}>{tool.name}</span>
-                                        </div>
-                                    ))}
+                {/* === Main About Card === */}
+                <div className={styles.aboutCard}>
+                    <div className={styles.glowEffect} />
+
+                    <div className={styles.grid}>
+                        {/* Left: Bio/Story */}
+                        <div className={styles.mainContent}>
+                            <ScrollReveal>
+                                <section className={styles.bioSection}>
+                                    <h3 className={styles.sectionLabel}>My Story</h3>
+                                    <p className={styles.bioText}>
+                                        Based in Kathmandu, Nepal, my journey into design started with a simple curiosity about how technology impacts people. Today, I specialize in creating clean, minimal aesthetics that solve complex problems.
+                                    </p>
+                                    <p className={styles.bioText}>
+                                        I believe the best products aren&apos;t just &quot;used&quot; — they are felt. My work is a balance of rigorous research, intentional design, and a touch of motion magic.
+                                    </p>
+                                </section>
+                            </ScrollReveal>
+
+                            <ScrollReveal delay={100}>
+                                <section className={styles.approachSection}>
+                                    <h3 className={styles.sectionLabel}>My Approach</h3>
+                                    <div className={styles.valuesGrid}>
+                                        {values.map((v, i) => (
+                                            <div key={i} className={styles.valueCard}>
+                                                <span className={styles.valueEmoji}>{v.emoji}</span>
+                                                <h4>{v.title}</h4>
+                                                <p>{v.desc}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </section>
+                            </ScrollReveal>
+
+
+                        </div>
+
+                        {/* Right: Visual */}
+                        <ScrollReveal>
+                            <div className={styles.visualSide}>
+                                <div className={styles.photoContainer}>
+                                    <Image
+                                        src="/assets/images/sagar.png"
+                                        alt="Sagar Kumar Khadka"
+                                        width={500}
+                                        height={600}
+                                        className={styles.aboutImage}
+                                        priority
+                                    />
                                 </div>
                             </div>
                         </ScrollReveal>
                     </div>
 
-                    {/* Right: Illustration/Photo */}
-                    <ScrollReveal delay={150}>
-                        <div className={styles.photoWrapper}>
-                            <div className={styles.photoContainer}>
-                                <img
-                                    src="/assets/images/sagar.png"
-                                    alt="Sagar Kumar Khadka"
-                                    className={styles.aboutImage}
-                                />
-                            </div>
+                    {/* === Philosophy Quote (Moved Inside) === */}
+                    <ScrollReveal>
+                        <div className={styles.cardQuote}>
+                            <blockquote className={styles.bigQuote}>
+                                &ldquo;Good design is invisible. Great design is <em>unforgettable</em>.&rdquo;
+                            </blockquote>
+                            <p className={styles.quoteAuthor}>— Somewhere on the internet</p>
                         </div>
                     </ScrollReveal>
                 </div>
-            </PageBox>
+
+                {/* === Tool Icons Moved Outside === */}
+                <ScrollReveal delay={100}>
+                    <div className={styles.toolsSection}>
+                        <h3 className={`${styles.sectionLabel} ${styles.cleanLabel}`}>Current Stack</h3>
+                        <div className={styles.toolsList}>
+                            {toolIcons.map((tool, i) => (
+                                <div key={i} className={styles.toolIconWrapper}>
+                                    <div className={styles.toolIconInner}>
+                                        <Image
+                                            src={tool.src}
+                                            alt={tool.name}
+                                            width={44}
+                                            height={44}
+                                            className={styles.toolIconImg}
+                                        />
+                                    </div>
+                                    <span className={styles.toolName}>{tool.name}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </ScrollReveal>
+
+
+
+                {/* === Beyond Design === */}
+                <ScrollReveal>
+                    <div className={styles.beyondSection}>
+                        <div className={styles.beyondHeader}>
+                            <h2>Beyond Design</h2>
+                            <p className={styles.beyondSubtitle}>When I&apos;m not pushing pixels, you&apos;ll find me...</p>
+                        </div>
+                        <div className={styles.interestsGrid}>
+                            {interests.map((item, i) => {
+                                // Define animation class based on icon
+                                let animClass = '';
+                                if (item.label === 'Basketball') animClass = styles.bounce;
+                                else if (item.label === 'Tea Lover') animClass = styles.sway;
+                                else if (item.label === 'Music Lover') animClass = styles.pulse;
+                                else if (item.label === 'Drawing') animClass = styles.wiggle;
+                                else if (item.label === 'Hiking') animClass = styles.float;
+                                else if (item.label === 'Anime & Films') animClass = styles.pulse;
+
+                                return (
+                                    <div key={i} className={styles.interestPill}>
+                                        <span className={`${styles.interestEmoji} ${animClass}`}>
+                                            {item.emoji}
+                                        </span>
+                                        <span>{item.label}</span>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </ScrollReveal>
+
+                {/* === CTA Section === */}
+                <ScrollReveal>
+                    <div className={styles.ctaSection}>
+                        {/* Dispersed Background Icons */}
+                        <div className={styles.ctaGridBackground}>
+                            {[...socials, ...toolIcons, ...socials, ...toolIcons].slice(0, 18).map((icon, index) => (
+                                <div
+                                    key={index}
+                                    className={`${styles.bgIcon} ${styles[`icon${index}`]}`}
+                                >
+                                    {icon.icon ? (
+                                        icon.icon
+                                    ) : (
+                                        <Image src={icon.src} alt={icon.name} width={28} height={28} priority={index < 5} />
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+
+                        <h2>Let&apos;s build something great together.</h2>
+                        <p>I&apos;m always open to new opportunities and exciting projects.</p>
+                        <Link href="/contact" className={styles.ctaButton}>
+                            Get in Touch <span>→</span>
+                        </Link>
+                    </div>
+                </ScrollReveal>
+            </PageBox >
 
             <Footer />
         </>

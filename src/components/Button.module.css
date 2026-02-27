@@ -31,13 +31,15 @@
 
 /* Variants */
 .primary {
-    background-color: var(--accent);
+    background-color: var(--text-primary);
     color: white;
-    border-color: var(--accent);
+    border-color: var(--text-primary);
 }
 
 .primary:hover {
-    background-color: var(--accent-hover);
+    background-color: white;
+    color: var(--text-primary);
+    border-color: var(--text-primary);
     transform: translateY(-1px);
     box-shadow: var(--shadow-md);
 }
@@ -64,6 +66,7 @@
     background-color: var(--text-primary);
     color: white;
     transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(36, 38, 33, 0.1);
 }
 
 /* Icon */

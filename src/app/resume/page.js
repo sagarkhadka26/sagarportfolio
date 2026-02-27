@@ -2,8 +2,11 @@
 
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
+import Image from 'next/image';
 import ScrollReveal from '@/components/ScrollReveal';
 import PageBox from '@/components/PageBox';
+import TextReveal from '@/components/TextReveal';
+import { toolIcons } from '@/lib/toolIcons';
 import styles from './page.module.css';
 
 export default function ResumePage() {
@@ -25,8 +28,8 @@ export default function ResumePage() {
     const education = [
         {
             degree: 'Bachelors in Software Engineering',
-            institution: 'Nepal College of Information Technology (NCIT), Balkumari',
-            period: 'Sep, 2018 - Jan, 2024',
+            institution: 'Nepal College of Information Technology (NCIT)',
+            period: '2018 - 2024',
         },
     ];
 
@@ -35,22 +38,23 @@ export default function ResumePage() {
         'Design Systems', 'Responsive Design', 'User Testing', 'Interaction Design',
     ];
 
-    const tools = [
-        'Figma', 'Adobe XD', 'Photoshop', 'Canva', 'JavaScript', 'Rive',
-    ];
-
     return (
         <>
             <PageBox>
                 <div className={styles.pageHeader}>
-                    <ScrollReveal>
-                        <h1 className={styles.pageTitle}>Resume</h1>
-                        <p className={styles.pageSubtitle}>A summary of my professional journey and capabilities.</p>
-                    </ScrollReveal>
-                    <ScrollReveal delay={100}>
-                        <div style={{ marginTop: '24px' }}>
+                    <TextReveal
+                        text="Resume"
+                        tag="h1"
+                        className={styles.pageTitle}
+                        delay={100}
+                    />
+                    <div className={styles.headerRow}>
+                        <ScrollReveal delay={300}>
+                            <p className={styles.pageSubtitle}>A summary of my professional journey, expertise, and the tools I use to bring ideas to life.</p>
+                        </ScrollReveal>
+                        <ScrollReveal delay={400}>
                             <Button
-                                href="/resume.pdf"
+                                href="/assets/resume/Sagar_Kumar_Khadka_UIUX_Resume.pdf"
                                 variant="primary"
                                 size="md"
                                 external
@@ -62,66 +66,107 @@ export default function ResumePage() {
                             >
                                 Download PDF
                             </Button>
-                        </div>
-                    </ScrollReveal>
-                    <ScrollReveal delay={150}>
+                        </ScrollReveal>
+                    </div>
+                </div>
+
+                {/* PDF Viewer Section - Prioritized at Top */}
+                <section className={styles.downloadSection}>
+                    <ScrollReveal>
                         <div className={styles.pdfViewer}>
                             <iframe
-                                src="/assets/resume/Sagar_Kumar_Khadka_UIUX_Resume.pdf#toolbar=0"
+                                src="/assets/resume/Sagar_Kumar_Khadka_UIUX_Resume.pdf#view=FitH"
                                 width="100%"
-                                height="800px"
-                                style={{
-                                    border: '1px solid var(--border)',
-                                    borderRadius: '12px',
-                                    marginTop: '40px'
-                                }}
+                                height="600px"
+                                style={{ border: 'none' }}
                                 title="Sagar Kumar Khadka Resume"
                             />
                         </div>
                     </ScrollReveal>
-                </div>
+                </section>
 
-                <div className={styles.experienceSectionFull}>
-                    <ScrollReveal>
-                        <h2 className={`${styles.sectionHeading} ${styles.centeredHeading}`}>Experience</h2>
-                        <div className={styles.experienceHorizontal}>
-                            {experience.map((item, i) => (
-                                <div key={i} className={styles.horizontalEntry}>
-                                    <h3 className={styles.entryTitle}>{item.role}</h3>
-                                    <p className={styles.entryCompany}>{item.company} • {item.period}</p>
-                                    <p className={styles.entryDesc}>{item.description}</p>
+                <div className={styles.resumeGrid}>
+                    {/* Main Content: Experience & Education */}
+                    <div className={styles.mainContent}>
+                        <section className={styles.section}>
+                            <ScrollReveal>
+                                <h2 className={styles.sectionHeading}>Professional Experience</h2>
+                                <div className={styles.timeline}>
+                                    {experience.map((item, i) => (
+                                        <div key={i} className={styles.timelineItem}>
+                                            <div className={styles.timelineDot} />
+                                            <div className={styles.entryHeader}>
+                                                <h3 className={styles.entryTitle}>{item.role}</h3>
+                                                <span className={styles.entryPeriod}>{item.period}</span>
+                                            </div>
+                                            <p className={styles.entryCompany}>{item.company}</p>
+                                            <p className={styles.entryDesc}>{item.description}</p>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
-                    </ScrollReveal>
-                </div>
+                            </ScrollReveal>
+                        </section>
 
-                <div className={styles.sectionFull}>
-                    <ScrollReveal>
-                        <h2 className={`${styles.sectionHeading} ${styles.centeredHeading}`}>Education</h2>
-                        <div className={styles.educationVertical}>
-                            {education.map((item, i) => (
-                                <div key={i} className={styles.centeredEntry}>
-                                    <h3 className={styles.entryTitle}>{item.degree}</h3>
-                                    <p className={styles.entryCompany}>{item.institution} • {item.period}</p>
+                        <section className={styles.section}>
+                            <ScrollReveal delay={100}>
+                                <h2 className={styles.sectionHeading}>Education</h2>
+                                <div className={styles.timeline}>
+                                    {education.map((item, i) => (
+                                        <div key={i} className={styles.timelineItem}>
+                                            <div className={styles.timelineDot} />
+                                            <div className={styles.entryHeader}>
+                                                <h3 className={styles.entryTitle}>{item.degree}</h3>
+                                                <span className={styles.entryPeriod}>{item.period}</span>
+                                            </div>
+                                            <p className={styles.entryCompany}>{item.institution}</p>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
-                    </ScrollReveal>
-                </div>
+                            </ScrollReveal>
+                        </section>
+                    </div>
 
-                <div className={styles.sectionFull}>
-                    <ScrollReveal delay={100}>
-                        <h2 className={`${styles.sectionHeading} ${styles.centeredHeading}`}>Tools & Skills</h2>
-                        <div className={styles.centeredPills}>
-                            <div className={styles.pillGridCentered}>
-                                {[...skills, ...tools].map((item) => (
-                                    <span key={item} className={styles.pill}>{item}</span>
-                                ))}
+                    {/* Sidebar: Skills, Tools, and Download */}
+                    <aside className={styles.sidebar}>
+                        <ScrollReveal delay={200}>
+                            <div className={styles.sidebarSection}>
+                                <h2 className={styles.sidebarHeading}>Core Skills</h2>
+                                <div className={styles.pillGrid}>
+                                    {skills.map((skill) => (
+                                        <span key={skill} className={styles.pill}>{skill}</span>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                    </ScrollReveal>
+
+                            <div className={styles.sidebarSection}>
+                                <h2 className={styles.sidebarHeading}>Software & Tools</h2>
+                                <div className={styles.toolList}>
+                                    {toolIcons.map((tool) => (
+                                        <div key={tool.name} className={styles.toolItem}>
+                                            <div className={styles.toolIcon}>
+                                                <Image
+                                                    src={tool.src}
+                                                    alt={tool.name}
+                                                    width={24}
+                                                    height={24}
+                                                />
+                                            </div>
+                                            <span className={styles.toolName}>{tool.name}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </ScrollReveal>
+                    </aside>
                 </div>
+
+                <section className={styles.contactSection}>
+                    <ScrollReveal>
+                        <Button href="/contact" variant="primary" size="lg">
+                            Get in Touch <span style={{ marginLeft: '8px', fontSize: '1.2em' }}>↗</span>
+                        </Button>
+                    </ScrollReveal>
+                </section>
             </PageBox>
 
             <Footer />

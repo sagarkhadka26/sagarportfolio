@@ -1,51 +1,62 @@
 'use client';
 
+import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
-/* Removed next/image import if not using it, or keep for future */
-import ScrollReveal from './ScrollReveal';
 import styles from './ProjectCard.module.css';
 
 export default function ProjectCard({ project, index = 0 }) {
+    const [imageLoaded, setImageLoaded] = useState(false);
+
     return (
-        <ScrollReveal delay={index * 50}>
-            <Link
-                href={`/work/${project.slug}`}
-                className={styles.card}
-            >
-                <div className={styles.imageWrapper}>
-                    {project.thumbnail ? (
-                        <img
+        <Link
+            href={`/work/${project.slug}`}
+            className={styles.card}
+        >
+            <div className={styles.imageWrapper}>
+                {project.thumbnail ? (
+                    <>
+                        <div
+                            className={`${styles.imagePlaceholder}`}
+                            style={{ opacity: imageLoaded ? 0 : 1 }}
+                        />
+                        <Image
                             src={project.thumbnail}
                             alt={project.title}
-                        /* Style handled by CSS .imageWrapper img */
+                            fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            onLoad={() => setImageLoaded(true)}
+                            className={`${styles.projectImg} ${imageLoaded ? styles.visibleImg : styles.hiddenImg}`}
+                            style={{ objectFit: 'cover', objectPosition: 'top' }}
                         />
-                    ) : (
-                        <div className={styles.imagePlaceholder}>
-                            <span className={styles.placeholderText}>{project.title}</span>
-                        </div>
-                    )}
-                </div>
+                    </>
+                ) : (
+                    <div className={styles.imagePlaceholder}>
+                        <span className={styles.placeholderText}>{project.title}</span>
+                    </div>
+                )}
+            </div>
 
-                <div className={styles.info}>
-                    <h3 className={styles.title}>{project.title}</h3>
+            <div className={styles.metaRow}>
+                <span className={styles.metaItem}>UI/UX • FIGMA</span>
+                <span className={styles.metaLabel}>Website • {project.year}</span>
+            </div>
 
-                    {/* Restored Link Icon */}
-                    <svg
-                        className={styles.linkIcon}
-                        viewBox="0 0 14 14"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M1 13L13 1M13 1H3M13 1V11"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                    </svg>
+            <div className={styles.progressTray}>
+                <div
+                    className={styles.progressBar}
+                    style={{ width: `100%` }}
+                />
+            </div>
+
+            <div className={styles.content}>
+                <h3 className={styles.title}>{project.title}</h3>
+                <p className={styles.description}>{project.description}</p>
+
+                <div className={styles.footer}>
+                    <span className={styles.cta}>VIEW PROJECT ↗</span>
                 </div>
-            </Link>
-        </ScrollReveal>
+            </div>
+        </Link>
     );
 }

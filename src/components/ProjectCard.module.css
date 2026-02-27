@@ -1,94 +1,139 @@
-/* ProjectCard Styles - Refined based on 380x262 16px semibold request */
-
 .card {
-    display: block;
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
     color: inherit;
-    transition: transform 0.2s ease;
     cursor: pointer;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    /* Increased lift */
-}
-
-.card:hover .imageWrapper {
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
-    /* Proximity depth */
-    transform: scale(1.03);
-}
-
-/* Image Wrapper with fixed aspect ratio */
-.imageWrapper {
     width: 100%;
-    aspect-ratio: 380 / 262;
-    border-radius: 12px;
-    overflow: hidden;
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border);
-    margin-bottom: 20px;
-    /* Increased from 12px */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
-    /* Added base depth */
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.imageWrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    margin-bottom: 12px;
+    /* Reduced from 20px */
     transition: transform 0.3s ease;
 }
 
-/* Restored Placeholder Styles */
-.imagePlaceholder {
+.card:hover {
+    transform: translateY(-4px);
+}
+
+.imageWrapper {
+    width: 100%;
+    aspect-ratio: 16 / 8.5;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    margin-bottom: 16px;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    /* Subtle stroke */
+}
+
+.projectImg {
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg-surface);
-    padding: 16px;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.placeholderText {
-    font-size: 14px;
-    color: #888;
-    text-align: center;
-    font-weight: 500;
+.card:hover .projectImg {
+    transform: scale(1.05);
 }
 
-.card:hover .imageWrapper img {
-    transform: scale(1.02);
+.metaItem {
+    background: #F4F4F4;
+    padding: 4px 12px;
+    border-radius: 100px;
+    color: var(--text-primary);
+    font-weight: 700;
 }
 
-.info {
+.metaRow {
     display: flex;
     justify-content: space-between;
-    /* Space title and icon */
     align-items: center;
-}
-
-/* Typography Update: 16px Semibold */
-.title {
-    font-size: 16px;
-    font-weight: 600;
-    /* Semibold */
-    color: var(--text-primary);
-    margin: 0;
-}
-
-/* Link Icon restored */
-.linkIcon {
+    /* Center pills vertically */
+    font-size: 11px;
+    /* Slightly smaller */
     color: var(--text-secondary);
-    /* or inherit? */
-    transition: transform 0.2s ease;
-    width: 14px;
-    height: 14px;
+    margin-bottom: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
-.card:hover .linkIcon {
+.progressTray {
+    width: 100%;
+    height: 2px;
+    /* Thinner line */
+    background: #F0F0F0;
+    border-radius: 2px;
+    margin-bottom: 16px;
+    /* Reduced from 20px */
+    overflow: hidden;
+}
+
+.progressBar {
+    height: 100%;
+    background: var(--text-primary);
+    /* Changed from Olive to Black */
+    border-radius: 2px;
+    transition: width 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: start;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 600;
     color: var(--text-primary);
-    transform: translate(2px, -2px);
+    margin: 0 0 4px 0;
+    grid-column: 1;
+}
+
+.description {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+    grid-column: 1;
+}
+
+.footer {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    padding-top: 4px;
+}
+
+.cta {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.card:hover .cta {
+    color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 18px;
+    }
+
+    .content {
+        gap: 4px;
+    }
+
+    .footer {
+        margin-top: 8px;
+        justify-content: flex-start;
+    }
 }

@@ -1,7 +1,7 @@
 'use client';
 
+import { categories, activeCategories } from '@/lib/projects';
 import styles from './FilterBar.module.css';
-import { categories, activeCategories } from '@/data/projects';
 
 export default function FilterBar({ selected, onSelect }) {
     return (
@@ -19,7 +19,7 @@ export default function FilterBar({ selected, onSelect }) {
                         disabled={!isActive}
                         title={!isActive ? 'Coming Soon' : undefined}
                     >
-                        {cat}
+                        <span className={styles.pillText}>{cat}</span>
                         {!isActive && <span className={styles.badge}>Soon</span>}
                     </button>
                 );

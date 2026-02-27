@@ -1,44 +1,80 @@
 /* ========================================
-   HOME PAGE STYLES — REFINED (Figma Measurements v3)
+   HOME PAGE STYLES — FINAL STABILIZED
    ======================================== */
 
-/* Main Container */
+/* --- Fixed Pill Nav (Appears on Scroll) --- */
+.fixedPillNav {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  left: auto;
+  transform: translateY(-100px);
+  opacity: 0;
+  z-index: 2000;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.fixedPillNav.visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* --- Hero Layout --- */
+.heroWrapper {
+  position: relative;
+  min-height: 100vh;
+  z-index: 1;
+}
+
 .heroContainer {
+  position: relative;
+  min-height: 100vh;
   width: 100%;
-  margin: 30px auto 0;
-  /* Standardized to 30px for all pages */
-  padding: 0 40px;
   display: flex;
+  align-items: center;
   justify-content: center;
-  position: relative;
-  z-index: 1;
+  overflow: hidden;
+  background-color: var(--bg-outer);
+  padding: 24px 0;
+  /* Fixed vertical start coordinate */
+  /* Removed olive brand glow */
+  background-image: none;
 }
 
-/* Stroked Rectangle Box - Expands to full width */
 .heroCard {
-  width: 100%;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background-color: var(--bg-surface);
-  position: relative;
-  z-index: 1;
-  overflow: visible;
-}
-
-/* Inner Content Wrapper - Stays fixed at 1360px */
-.heroInner {
-  width: 100%;
-  max-width: 1360px;
+  width: calc(100vw - 100px) !important;
+  /* Exactly 100vw minus 50px on each side */
   margin: 0 auto;
-  height: 566px;
-  padding: 20px 40px;
+  min-height: calc(100vh - (var(--space-lg) * 2));
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  /* Ensure glow stays inside */
 }
 
-/* Header inside card */
+.heroInner {
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+  /* This forces the inner content to fill the card's height, fixing the bottom gap! */
+  padding: 24px 48px 0;
+  /* Standardized to pixels: 24px = var(--space-lg), 48px = var(--space-2xl) */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+  /* Above glow */
+}
+
+/* Base Header (Inside Hero) */
 .header {
   display: flex;
   justify-content: space-between;
@@ -46,7 +82,6 @@
   height: 60px;
 }
 
-/* Logo container 60x60 */
 .logo {
   width: 60px;
   height: 60px;
@@ -55,113 +90,176 @@
   justify-content: center;
 }
 
-/* Logo image 40x40 */
 .logo img {
   width: 40px;
   height: 40px;
   object-fit: contain;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.logo:hover img {
+  transform: translateY(-8px) rotate(520deg);
+}
+
+.navbarWrapper {
+  display: flex;
+  align-items: center;
 }
 
 /* Hero Content Grid */
 .heroContent {
   display: grid;
-  grid-template-columns: 1fr 346px 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
+  /* Center the text and icons vertically */
   position: relative;
   z-index: 2;
   flex-grow: 1;
+  gap: var(--space-xl);
 }
 
-/* Left: Text */
+
+
 .heroLeft {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 4px;
   align-items: flex-start;
+  position: relative;
   z-index: 10;
+  /* Removed padding-bottom since it will be vertically centered now */
+}
+
+.heroGreeting {
+  font-size: 20px;
+  /* Increased from 16px */
+  font-weight: 400;
+  color: var(--text-secondary);
 }
 
 .heroName {
-  font-size: 36px;
+  font-size: clamp(28px, 4vw, 44px);
+  /* Increased from clamp(24px, 3vw, 36px) */
   font-weight: 600;
   letter-spacing: -0.03em;
   color: var(--text-primary);
-  margin: 0;
+  margin-bottom: 4px;
 }
 
 .heroTitle {
-  font-size: 64px;
+  font-size: clamp(40px, 6vw, 76px);
+  /* Increased from clamp(32px, 5vw, 60px) */
   font-weight: 700;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.04em;
   color: var(--text-primary);
-  line-height: 1;
+  line-height: 1.1;
   margin-bottom: 24px;
   white-space: nowrap;
 }
 
-/* Resume Button */
 .resumeBtn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  background-color: black;
+  gap: 10px;
+  background-color: var(--text-primary);
   color: white;
-  padding: 12px 16px;
+  padding: 12px 24px;
   border-radius: 100px;
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
-  transition: transform 0.2s ease;
+  border: 1.5px solid var(--text-primary);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .resumeBtn:hover {
-  transform: translateY(-2px);
+  background-color: white;
+  color: var(--text-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Center: Image Area (Overlay on Desktop, Flow on Mobile) */
+.resumeBtn::after {
+  content: '↗';
+  font-size: 18px;
+  margin-left: 4px;
+}
+
+/* Center: Image Area — Avatar properly touches the bottom bounding box and is dead-center */
 .heroImage {
   position: absolute;
-  width: 346px;
-  height: 677px;
+  bottom: 0px;
   left: 50%;
-  bottom: -120px;
-  /* Restored to -120px as requested */
-  /* Slight overlap on the next section border (16px overlap with 56px margin) */
-  transform: translateX(calc(-50% + 20px));
-  /* Moved 20px to the right */
-  z-index: 5;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 800px !important;
+  /* Adjusted to 800px as requested */
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1;
   pointer-events: none;
+  /* Let clicks pass through to background */
 }
 
-.heroSpacer {
-  flex: 1;
+/* Ensure ScrollReveal and its children don't add extra space and expand fully */
+.heroImage>div,
+.heroImage [class*="reveal"] {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  width: 100%;
+  /* Ensure the intermediate div fills the parent */
+  max-width: inherit;
+  /* Ensure it inherits the 950px limit */
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0;
+}
+
+.heroImage img {
+  width: 110% !important;
+  max-width: 800px !important;
+  /* Adjusted to 800px as requested */
+  height: auto;
+  display: block;
+  /* Remove baseline gap */
+  object-fit: contain;
+  object-position: bottom;
+  transform: translateX(2%);
+  /* Shifted 2% to the right as requested */
+  margin-bottom: 0 !important;
 }
 
 /* Right: Icons */
 .heroRight {
   display: flex;
   justify-content: flex-end;
-  /* Pushed to extreme right */
-  margin-top: 40px;
+  position: relative;
+  z-index: 10;
+  /* Removed padding-bottom since icons are vertically centered now */
 }
 
 .iconLayout {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  align-items: flex-end;
-  /* Right align to match navbar */
 }
 
 .iconRow {
   display: flex;
   gap: 16px;
   justify-content: flex-end;
-  /* Right align to match navbar */
 }
 
 .toolIconWrapper {
+  width: 60px;
+  height: 60px;
+}
+
+.toolIconInner {
   width: 60px;
   height: 60px;
   display: flex;
@@ -171,22 +269,9 @@
   border-radius: 12px;
   border: 1px solid var(--border);
   transition: all 0.3s ease;
-  padding: 6px;
+  padding: 8px;
   position: relative;
-  cursor: default;
-}
-
-.toolIconWrapper:hover {
-  transform: translateY(-5px);
-  border-color: var(--text-primary);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-  z-index: 10;
-}
-
-.toolIconImg {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  animation: float 3s ease-in-out infinite;
 }
 
 .tooltip {
@@ -199,176 +284,365 @@
   padding: 6px 12px;
   border-radius: 6px;
   font-size: 12px;
-  font-weight: 500;
-  white-space: nowrap;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
-  pointer-events: none;
   z-index: 20;
 }
 
-.tooltip::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid var(--text-primary);
-}
-
-.toolIconWrapper:hover .tooltip {
+.toolIconInner:hover .tooltip {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
 }
 
-/* ===== WORKS SECTION ===== */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* --- Content Content (Slides Over) --- */
+.contentWrapper {
+  position: relative;
+  background-color: var(--bg-outer);
+  will-change: transform;
+}
+
 .worksSection {
-  width: 100%;
-  margin: 0 auto 100px;
-  padding: 0 40px;
+  position: relative;
+  padding: var(--space-3xl) 0;
+  content-visibility: auto;
   display: flex;
   justify-content: center;
-  margin-top: 85px;
-  /* Final refined position: 85px */
 }
 
 .worksCard {
-  width: 100%;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background-color: var(--bg-surface);
-  position: relative;
+  width: calc(100vw - 100px) !important;
+  /* Exactly 100vw minus 50px on each side */
+  margin: 0 auto;
 }
 
 .worksInner {
   width: 100%;
-  max-width: 1360px;
-  margin: 0 auto;
-  padding: 80px 40px;
-  /* Balanced internal padding */
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4xl) var(--space-2xl);
   display: flex;
   flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+  /* Ensure glow stays inside */
+  z-index: 1;
+  /* Above glow div but below content */
+}
+
+.worksHeader {
+  margin-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Centered */
+  gap: 8px;
 }
 
 .sectionTitle {
-  text-align: center;
-  margin-bottom: 40px;
-  font-size: 48px;
+  font-size: clamp(32px, 5vw, 56px);
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
+  line-height: 1.1;
+  text-align: center;
+  /* Centered */
 }
 
+.sectionSubTitle {
+  font-size: 22px;
+  /* Increased from 18px */
+  color: var(--text-secondary);
+  font-weight: 500;
+  /* Increased weight */
+  letter-spacing: -0.01em;
+  text-align: center;
+  /* Centered */
+}
 
-/* Responsiveness */
-@media (max-width: 1400px) {
+.boomWord {
+  display: inline-block;
+  opacity: 0;
+  transform: scale(0.3) translateY(100px);
+}
 
-  .heroInner,
-  .worksInner {
-    height: auto;
-    min-height: 566px;
+.boomRevealed {
+  animation: boomReveal 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes boomReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(100px);
+    /* Removed heavy blur filter to reduce lag */
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
 }
 
+.viewAllWrapper {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.viewAllBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  background: var(--text-primary);
+  color: white !important;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1.5px solid var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.viewAllBtn:hover {
+  background-color: white;
+  color: var(--text-primary) !important;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.viewAllBtn span {
+  transition: transform 0.3s ease;
+}
+
+.viewAllBtn:hover span {
+  transform: translateX(4px);
+}
+
+
+
+/* Easter Egg */
+.easterEggLogo {
+  animation: easterEggSpin 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+}
+
+@keyframes easterEggSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(1080deg);
+  }
+}
+
+.easterEggOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.easterEggContent {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+/* Responsive — Tablet */
 @media (max-width: 1024px) {
-  .heroTitle {
-    font-size: 48px;
-    white-space: normal;
+
+  .heroCard,
+  .worksCard {
+    width: calc(100vw - 80px) !important;
+    /* 40px margins on tablet */
+  }
+
+  .heroContainer {
+    padding: 24px 0;
+  }
+
+  .worksSection {
+    padding: var(--space-3xl) 0;
   }
 
   .heroContent {
     grid-template-columns: 1fr;
-    text-align: center;
-    justify-items: center;
     gap: 40px;
+    align-items: center;
   }
 
   .heroLeft {
     align-items: center;
-    order: 1;
-  }
-
-  .header {
-    margin-bottom: 30px;
+    text-align: center;
+    padding-bottom: var(--space-xl);
+    /* Add some padding back for stacked mobile view */
   }
 
   .heroImage {
     position: relative;
-    width: 280px;
+    width: 80% !important;
+    /* Increased from 60% for tablet */
+    margin: 0 auto;
     height: auto;
-    transform: none;
+    bottom: auto;
     left: auto;
-    top: auto;
-    margin: 20px auto 0;
-    order: 4;
-    /* Pushed to bottom */
+    transform: none;
     pointer-events: auto;
-    z-index: 1;
   }
 
-  .heroSpacer {
-    display: none;
+  .heroImage img {
+    width: 100%;
+    transform: none;
   }
 
   .heroRight {
     justify-content: center;
-    margin-top: 0;
-    order: 3;
+    padding-top: var(--space-xl);
+    /* Add some padding back for stacked mobile view */
   }
 
-  .heroInner {
-    height: auto;
-    justify-content: flex-start;
-  }
-}
-
-@media (max-width: 768px) {
-
-  .heroContainer,
-  .worksSection {
-    padding: 0 20px;
-    margin-top: 20px;
+  .iconRow {
+    justify-content: center;
   }
 
-  .heroInner,
-  .worksInner {
-    padding: 24px 16px 40px;
+  .heroName {
+    font-size: 30px;
   }
 
   .heroTitle {
     font-size: 40px;
-    margin-bottom: 16px;
+    white-space: normal;
+  }
+}
+
+/* Responsive — Mobile */
+@media (max-width: 768px) {
+
+  .heroCard,
+  .worksCard {
+    width: calc(100vw - 40px) !important;
+    /* 20px margins on mobile */
+  }
+
+  .heroContainer {
+    padding: 20px 0;
+    height: auto;
+    position: relative;
+  }
+
+  .worksSection {
+    padding: var(--space-2xl) 0;
+  }
+
+  .heroWrapper {
+    height: auto;
+  }
+
+  .heroCard {
+    height: auto;
+  }
+
+  .heroInner {
+    padding: var(--space-md) var(--space-md) 0;
+  }
+
+  .heroImage {
+    width: 90%;
+  }
+
+  .heroTitle {
+    font-size: clamp(28px, 8vw, 40px);
+    white-space: normal;
   }
 
   .heroName {
-    font-size: 24px;
+    font-size: clamp(20px, 5vw, 30px);
   }
 
-  .header {
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    height: auto;
-    margin-bottom: 32px;
+  .fixedPillNav {
+    top: 16px;
+    right: 16px;
   }
 
-  .iconGrid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-  }
-
-  .toolIconImg {
+  .toolIconWrapper {
     width: 48px;
     height: 48px;
   }
 
-  .heroImage {
-    width: 100%;
-    max-width: 300px;
-    margin: 20px auto 0;
-    display: block;
+  .toolIconInner {
+    width: 48px;
+    height: 48px;
+    padding: 6px;
   }
+
+  .sectionTitle {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+}
+
+/* Responsive — Large / 25" screens */
+@media (min-width: 2000px) {
+  /* No special max-width changes needed anymore, the core CSS 100vw - 160px will scale indefinitely maintaining exactly 80px borders */
+
+  .heroName {
+    font-size: 48px;
+  }
+
+  .heroTitle {
+    font-size: 80px;
+  }
+
+  .heroGreeting {
+    font-size: 20px;
+  }
+
+  .toolIconWrapper {
+    width: 72px;
+    height: 72px;
+  }
+
+  .toolIconInner {
+    width: 72px;
+    height: 72px;
+    padding: 10px;
+  }
+
+}
+
+/* Subtle neutral radial glow to mimic depth */
+.glowEffect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 0%,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0.1) 40%,
+      transparent 80%);
+  pointer-events: none;
+  z-index: 0;
 }

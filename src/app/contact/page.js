@@ -1,12 +1,22 @@
 'use client';
 
-import Footer from '@/components/Footer';
-import ScrollReveal from '@/components/ScrollReveal';
+import { socials, contactInfo } from '@/lib/socials';
+import { toolIcons } from '@/lib/toolIcons';
 import PageBox from '@/components/PageBox';
-import { socials, contactInfo } from '@/data/socials';
+import ScrollReveal from '@/components/ScrollReveal';
+import Footer from '@/components/Footer';
+import { useToast } from '@/components/Toast';
+import Image from 'next/image';
 import styles from './page.module.css';
 
 export default function ContactPage() {
+    const { showToast } = useToast();
+
+    const handleCopyEmail = () => {
+        navigator.clipboard.writeText(contactInfo.email);
+        showToast('Email copied to clipboard!');
+    };
+
     return (
         <>
             <PageBox>
@@ -39,10 +49,7 @@ export default function ContactPage() {
                                         </a>
                                         <button
                                             className={styles.copyBtn}
-                                            onClick={() => {
-                                                navigator.clipboard.writeText(contactInfo.email);
-                                                // Minimal feedback via button text/icon could be added here
-                                            }}
+                                            onClick={handleCopyEmail}
                                             title="Copy email"
                                         >
                                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -75,8 +82,9 @@ export default function ContactPage() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className={styles.socialLink}
+                                        style={{ '--brand-color': social.color }}
                                     >
-                                        <div className={styles.socialIcon}>
+                                        <div className={styles.socialIcon} style={{ color: social.color }}>
                                             {social.icon}
                                         </div>
                                         <span className={styles.socialName}>{social.name}</span>
@@ -89,6 +97,53 @@ export default function ContactPage() {
                         </div>
                     </ScrollReveal>
                 </div>
+
+                <div className={styles.servicesGrid}>
+                    <ScrollReveal delay={100}>
+                        <div className={styles.serviceItem}>
+                            <h3>UI/UX Design</h3>
+                            <p>Crafting intuitive and visually stunning interfaces for web and mobile products.</p>
+                        </div>
+                    </ScrollReveal>
+                    <ScrollReveal delay={200}>
+                        <div className={styles.serviceItem}>
+                            <h3>Web Development</h3>
+                            <p>Building responsive and high-performance websites using the latest technologies.</p>
+                        </div>
+                    </ScrollReveal>
+                    <ScrollReveal delay={300}>
+                        <div className={styles.serviceItem}>
+                            <h3>Product Strategy</h3>
+                            <p>Defining the roadmap and user journey to ensure your product hits the mark.</p>
+                        </div>
+                    </ScrollReveal>
+                </div>
+
+                <ScrollReveal delay={200}>
+                    <div className={styles.ctaSection}>
+                        {/* Background Icons Layer */}
+                        <div className={styles.ctaGridBackground}>
+                            {[...socials, ...toolIcons, ...socials, ...toolIcons].slice(0, 18).map((icon, index) => (
+                                <div
+                                    key={index}
+                                    className={`${styles.bgIcon} ${styles[`icon${index}`]}`}
+                                >
+                                    {icon.icon ? (
+                                        icon.icon
+                                    ) : (
+                                        <Image src={icon.src} alt={icon.name} width={28} height={28} priority={index < 5} />
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+
+                        <h2>Have a specific project in mind?</h2>
+                        <p>I&apos;m currently available for freelance projects and full-time opportunities.</p>
+                        <a href={`mailto:${contactInfo.email}`} className={styles.ctaButton}>
+                            Start a Conversation
+                        </a>
+                    </div>
+                </ScrollReveal>
             </PageBox>
 
             <Footer />

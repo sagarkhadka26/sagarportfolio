@@ -7,7 +7,7 @@
 }
 
 .pill {
-    padding: 8px 20px;
+    padding: 8px 24px;
     border-radius: var(--radius-pill);
     font-size: var(--text-sm);
     font-weight: var(--font-medium);
@@ -15,28 +15,40 @@
     letter-spacing: var(--letter-spacing);
     color: var(--text-secondary);
     background: transparent;
-    border: 1.5px solid transparent;
+    border: 1.5px solid #EEEEEE;
+    /* Neutral default border */
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all 0.3s ease;
     position: relative;
     white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.pill:hover:not(:disabled) {
+.pill:hover:not(:disabled):not(.selected) {
     color: var(--text-primary);
     border-color: var(--border);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
 .pill.selected {
-    color: var(--bg-white);
-    background-color: var(--accent);
-    border-color: var(--accent);
+    color: white;
+    background-color: var(--text-primary);
+    border-color: transparent;
+}
+
+.pillText {
+    position: relative;
+    z-index: 2;
 }
 
 .pill.comingSoon {
     color: var(--text-muted);
     cursor: default;
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 .pill.comingSoon:hover {
@@ -47,11 +59,31 @@
 .badge {
     font-size: 10px;
     font-weight: var(--font-semibold);
-    background: var(--border);
-    color: var(--text-muted);
+    background: #EEEEEE;
+    color: var(--text-secondary);
     padding: 1px 6px;
     border-radius: var(--radius-pill);
     margin-left: 4px;
     text-transform: uppercase;
     letter-spacing: 0.02em;
+}
+
+@media (max-width: 768px) {
+    .filterBar {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        justify-content: flex-start;
+        padding-bottom: 4px;
+    }
+
+    .filterBar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .pill {
+        padding: 6px 16px;
+        font-size: 13px;
+    }
 }

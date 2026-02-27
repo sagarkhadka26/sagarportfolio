@@ -1,11 +1,13 @@
 .footer {
     background-color: var(--footer-bg);
+    /* Extremely dark olive-black */
+    background-image: radial-gradient(circle at 50% -20%, rgba(126, 140, 109, 0.15) 0%, transparent 60%);
     color: var(--footer-text);
     position: relative;
     overflow: hidden;
-    /* Footer fills the full width background */
-    width: 100%;
-    margin-top: var(--space-4xl);
+    width: auto;
+    margin: 24px 20px 0;
+    border-radius: 40px 40px 0 0;
 }
 
 .container {
@@ -41,10 +43,8 @@
     line-height: 1.1;
     color: var(--footer-text);
     margin-bottom: 24px;
-    /* Gap for balance */
     letter-spacing: -0.02em;
     text-align: center;
-    /* Centered */
 }
 
 .contactSocialRow {
@@ -79,36 +79,54 @@
     font-size: 14px;
     text-decoration: none;
     transition: all var(--transition-base);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(126, 140, 109, 0.3);
+    /* Olive Pill Border */
     padding: 10px 20px;
-    /* Slimmer for better line alignment */
     border-radius: 100px;
 }
 
 .contactItem:hover {
     background-color: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.4);
+    color: var(--footer-text);
 }
 
 
 .resumeButton {
     display: inline-flex;
     align-items: center;
+    gap: 8px;
     padding: 12px 24px;
-    /* Balanced with contact pills */
     background-color: #FFFFFF;
-    color: #000000;
+    color: var(--text-primary);
     border-radius: 100px;
     font-size: 14px;
-    /* Match contact pill size */
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    border: 1.5px solid #FFFFFF;
+}
+
+.resumeButton::after {
+    content: '→';
+    font-size: 16px;
+    display: inline-block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0.9;
 }
 
 .resumeButton:hover {
-    background-color: #f0f0f0;
-    transform: scale(1.02);
+    background-color: transparent;
+    color: #FFFFFF;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.resumeButton:hover::after {
+    transform: translateX(4px);
+    opacity: 1;
 }
 
 /* Right side */
@@ -131,14 +149,29 @@
     /* Align to the right edge */
 }
 
+.toolIconInner {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 12px;
+    border: 1px solid var(--accent-olive);
+    /* Olive Tool Borders */
+    transition: all 0.3s ease;
+    padding: 8px;
+    position: relative;
+    animation: float 3s ease-in-out infinite;
+    box-shadow: 0 4px 12px rgba(126, 140, 109, 0.05);
+}
+
 .socialLink {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 48px;
-    /* Slightly bigger from 40px */
     height: 48px;
-    /* Slightly bigger from 40px */
     border-radius: 50%;
     color: var(--footer-text);
     transition: all var(--transition-base);
@@ -170,15 +203,7 @@
     margin-bottom: 32px;
 }
 
-.sparkle {
-    position: absolute;
-    right: 40px;
-    top: 50%;
-    transform: translateY(-50%) scale(2.2);
-    /* Made even bigger as requested */
-    background-color: var(--footer-bg);
-    padding: 0 12px;
-}
+
 
 .copyright {
     display: flex;
@@ -188,7 +213,6 @@
 .copyright span {
     font-size: 14px;
     color: var(--footer-text);
-    opacity: 0.8;
 }
 
 /* Responsive */
@@ -197,9 +221,29 @@
         padding: var(--space-3xl) 20px var(--space-md);
     }
 
+    .heading {
+        font-size: clamp(28px, 7vw, 40px);
+    }
+
     .content {
         flex-direction: column;
         gap: var(--space-2xl);
+    }
+
+    .contactSocialRow {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .leftPillGroup {
+        align-items: center;
+        gap: 20px;
+    }
+
+    .contactPills {
+        flex-direction: column;
+        gap: 10px;
     }
 
     .right {
@@ -207,7 +251,7 @@
     }
 
     .socialLinks {
-        justify-content: flex-start;
+        justify-content: center;
     }
 
     .illustrationArea {
@@ -216,5 +260,9 @@
 
     .copyright {
         text-align: center;
+    }
+
+    .footerBottom {
+        margin-top: 40px;
     }
 }

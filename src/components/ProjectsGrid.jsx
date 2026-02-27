@@ -3,8 +3,7 @@
 import { useState } from 'react';
 import FilterBar from './FilterBar';
 import ProjectCard from './ProjectCard';
-import ScrollReveal from './ScrollReveal';
-import { getProjectsByCategory } from '@/data/projects';
+import { getProjectsByCategory } from '@/lib/projects';
 import styles from './ProjectsGrid.module.css';
 
 export default function ProjectsGrid({
@@ -23,23 +22,22 @@ export default function ProjectsGrid({
     return (
         <div className={styles.wrapper}>
             {showFilter && (
-                <ScrollReveal delay={100}>
-                    <FilterBar
-                        selected={selectedCategory}
-                        onSelect={setSelectedCategory}
-                    />
-                </ScrollReveal>
+                <FilterBar
+                    selected={selectedCategory}
+                    onSelect={setSelectedCategory}
+                />
             )}
 
             <div className={styles.grid}>
                 {projects.map((project, index) => (
-                    <ProjectCard key={project.slug} project={project} index={index} />
+                    <div key={project.slug}>
+                        <ProjectCard project={project} index={index} />
+                    </div>
                 ))}
             </div>
 
             {projects.length === 0 && (
                 <div className={styles.emptyState}>
-                    <div className={styles.emptyIcon}>✦</div>
                     <p>Projects in this category are coming soon.</p>
                     <p className={styles.emptyHint}>Stay tuned for updates!</p>
                 </div>

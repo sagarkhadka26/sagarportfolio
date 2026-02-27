@@ -10,6 +10,7 @@ export const projects = [
     tools: ["Figma", "Adobe XD"],
     link: "#",
     featured: true,
+    completion: 85,
   },
   {
     slug: "supadeurali-pet-industries",
@@ -22,6 +23,7 @@ export const projects = [
     tools: ["Figma", "Photoshop"],
     link: "#",
     featured: true,
+    completion: 92,
   },
   {
     slug: "dolpo-ice-cream",
@@ -34,6 +36,7 @@ export const projects = [
     tools: ["Figma"],
     link: "#",
     featured: true,
+    completion: 78,
   },
   {
     slug: "legal-links-consultancy",
@@ -46,6 +49,7 @@ export const projects = [
     tools: ["Figma", "Adobe XD"],
     link: "#",
     featured: true,
+    completion: 100,
   },
   {
     slug: "nmc-pathology-blood-bank",
@@ -58,6 +62,7 @@ export const projects = [
     tools: ["Figma", "Photoshop"],
     link: "#",
     featured: true,
+    completion: 88,
   },
   {
     slug: "release-publication",
@@ -70,6 +75,7 @@ export const projects = [
     tools: ["Figma"],
     link: "#",
     featured: true,
+    completion: 95,
   },
 ];
 

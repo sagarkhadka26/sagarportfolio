@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import ProjectsGrid from '@/components/ProjectsGrid';
 import PageBox from '@/components/PageBox';
+import TextReveal from '@/components/TextReveal';
 import styles from './page.module.css';
 
 export default function WorkPage() {
@@ -11,8 +12,13 @@ export default function WorkPage() {
         <>
             <PageBox>
                 <div className={styles.pageHeader}>
-                    <ScrollReveal>
-                        <h1 className={styles.pageTitle}>Work</h1>
+                    <TextReveal
+                        text="Work"
+                        tag="h1"
+                        className={styles.pageTitle}
+                        delay={100}
+                    />
+                    <ScrollReveal delay={300}>
                         <p className={styles.pageSubtitle}>
                             A collection of projects I&apos;ve designed — from web products to mobile experiences.
                         </p>

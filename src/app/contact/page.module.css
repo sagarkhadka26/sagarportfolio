@@ -24,12 +24,32 @@
     margin-bottom: 60px;
 }
 
-.contactCard,
+.contactCard {
+    padding: 60px;
+    background: linear-gradient(135deg, #FFFFFF 0%, #FAFAF4 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.contactCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.05), transparent 70%);
+    pointer-events: none;
+}
+
 .socialCard {
     padding: 60px;
     background-color: white;
     border: 1px solid var(--border);
-    border-radius: 20px;
+    border-radius: var(--radius-xl);
     height: 100%;
 }
 
@@ -37,18 +57,38 @@
 .locationInfo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     font-size: 14px;
+    font-weight: 500;
     color: var(--text-secondary);
     margin-bottom: 40px;
+    background: rgba(16, 185, 129, 0.05);
+    padding: 6px 16px;
+    border-radius: 100px;
+    width: fit-content;
+    border: 1px solid rgba(16, 185, 129, 0.1);
 }
 
 .locationDot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     background-color: #10B981;
     /* Green dot */
     border-radius: 50%;
+    animation: dotPulse 2s ease-in-out infinite;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+}
+
+@keyframes dotPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+    }
 }
 
 .contactHeading,
@@ -57,6 +97,7 @@
     font-weight: 600;
     margin-bottom: 40px;
     letter-spacing: -0.02em;
+    color: var(--text-primary);
 }
 
 .contactMethods {
@@ -125,19 +166,56 @@
     align-items: center;
     gap: 16px;
     padding: 16px 20px;
-    background-color: var(--bg-outer);
-    border: 1px solid transparent;
+    background-color: #FAFAFA;
+    border: 1px solid #EEEEEE;
+    /* Subtle grey stroke */
     border-radius: 12px;
     text-decoration: none;
     color: var(--text-primary);
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     position: relative;
 }
 
 .socialLink:hover {
     background-color: white;
+    border-color: var(--brand-color, var(--text-primary));
+    transform: translateX(8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Services Section */
+.servicesGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.serviceItem {
+    padding: 30px;
+    border: 1px solid #EEEEEE;
+    border-radius: 16px;
+    background-color: #FFFFFF;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.serviceItem:hover {
     border-color: var(--text-primary);
-    transform: translateX(4px);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.serviceItem h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.serviceItem p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-secondary);
 }
 
 .socialIcon {
@@ -146,7 +224,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.7;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .socialName {
@@ -166,6 +244,190 @@
     transform: translateX(0);
 }
 
+/* CTA Section */
+.ctaSection {
+    text-align: center;
+    padding: 100px 40px;
+    background-color: var(--text-primary);
+    border-radius: var(--radius-xl);
+    color: white;
+    margin-bottom: 80px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.ctaGridBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.12;
+    /* Subtle visibility */
+}
+
+.bgIcon {
+    position: absolute;
+    color: white;
+}
+
+.bgIcon svg,
+.bgIcon img {
+    width: 32px;
+    height: 32px;
+    opacity: 0.8;
+}
+
+/* Scattered Positions (18 Icons) */
+.icon0 {
+    top: 5%;
+    left: 8%;
+    transform: rotate(15deg);
+}
+
+.icon1 {
+    top: 18%;
+    left: 22%;
+    transform: rotate(-10deg);
+}
+
+.icon2 {
+    top: 8%;
+    left: 88%;
+    transform: rotate(25deg);
+}
+
+.icon3 {
+    top: 35%;
+    left: 92%;
+    transform: rotate(-15deg);
+}
+
+.icon4 {
+    top: 72%;
+    left: 12%;
+    transform: rotate(30deg);
+}
+
+.icon5 {
+    top: 88%;
+    left: 30%;
+    transform: rotate(-35deg);
+}
+
+.icon6 {
+    top: 58%;
+    left: 78%;
+    transform: rotate(20deg);
+}
+
+.icon7 {
+    top: 82%;
+    left: 92%;
+    transform: rotate(-25deg);
+}
+
+.icon8 {
+    top: 12%;
+    left: 55%;
+    transform: rotate(10deg);
+}
+
+.icon9 {
+    top: 92%;
+    left: 62%;
+    transform: rotate(-12deg);
+}
+
+.icon10 {
+    top: 25%;
+    left: 68%;
+    transform: rotate(22deg);
+}
+
+.icon11 {
+    top: 48%;
+    left: 5%;
+    transform: rotate(-20deg);
+}
+
+.icon12 {
+    top: 32%;
+    left: 38%;
+    transform: rotate(35deg);
+}
+
+.icon13 {
+    top: 78%;
+    left: 52%;
+    transform: rotate(-40deg);
+}
+
+.icon14 {
+    top: 15%;
+    left: 38%;
+    transform: rotate(-18deg);
+}
+
+.icon15 {
+    top: 45%;
+    left: 58%;
+    transform: rotate(12deg);
+}
+
+.icon16 {
+    top: 62%;
+    left: 25%;
+    transform: rotate(-15deg);
+}
+
+.icon17 {
+    top: 68%;
+    left: 95%;
+    transform: rotate(40deg);
+}
+
+.ctaSection h2 {
+    font-size: clamp(32px, 5vw, 40px);
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+    position: relative;
+    z-index: 2;
+}
+
+.ctaSection p {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-inline: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.ctaButton {
+    display: inline-flex;
+    align-items: center;
+    padding: 18px 40px;
+    background-color: white;
+    color: black;
+    border-radius: 100px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    z-index: 2;
+}
+
+.ctaButton:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
 @media (max-width: 1024px) {
     .grid {
         grid-template-columns: 1fr;
@@ -180,6 +442,10 @@
     .methodLink {
         font-size: 24px;
     }
+
+    .servicesGrid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 768px) {
@@ -190,5 +456,18 @@
     .emailLink,
     .methodLink {
         font-size: 20px;
+    }
+
+    .ctaSection h2 {
+        font-size: 28px;
+    }
+
+    .ctaSection {
+        padding: 60px 20px;
+    }
+
+    .bgIcon svg {
+        width: 24px;
+        height: 24px;
     }
 }
