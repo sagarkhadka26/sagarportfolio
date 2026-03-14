@@ -40,23 +40,43 @@ export default function Navbar({ shrinkOnScroll = false, forceMobile = false }) 
         document.body
     ) : null;
 
+    // Portal the dropdown to body so it escapes the navbar's stacking context
+    const dropdown = menuOpen && mounted && forceMobile ? createPortal(
+        <ul className={`${styles.navLinks} ${styles.forceMobileLinks} ${styles.open}`}>
+            {navLinks.map((link) => (
+                <li key={link.href}>
+                    <Link
+                        href={link.href}
+                        className={`${styles.navLink} ${pathname === link.href ? styles.active : ''}`}
+                        onClick={() => setMenuOpen(false)}
+                    >
+                        {link.label}
+                    </Link>
+                </li>
+            ))}
+        </ul>,
+        document.body
+    ) : null;
+
     return (
         <>
             <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''} ${forceMobile ? styles.forceMobile : ''}`}>
-                <ul className={`${styles.navLinks} ${menuOpen ? styles.open : ''}`}>
-                    {navLinks.map((link) => (
-                        <li key={link.href}>
-                            <Link
-                                href={link.href}
-                                className={`${styles.navLink} ${pathname === link.href ? styles.active : ''
-                                    }`}
-                                onClick={() => setMenuOpen(false)}
-                            >
-                                {link.label}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
+                {/* Only show inline navLinks when NOT in forceMobile mode */}
+                {!forceMobile && (
+                    <ul className={`${styles.navLinks} ${menuOpen ? styles.open : ''}`}>
+                        {navLinks.map((link) => (
+                            <li key={link.href}>
+                                <Link
+                                    href={link.href}
+                                    className={`${styles.navLink} ${pathname === link.href ? styles.active : ''}`}
+                                    onClick={() => setMenuOpen(false)}
+                                >
+                                    {link.label}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                )}
 
                 <button
                     className={`${styles.menuButton} ${menuOpen ? styles.menuOpen : ''} ${forceMobile ? styles.showHamburger : ''}`}
@@ -70,6 +90,8 @@ export default function Navbar({ shrinkOnScroll = false, forceMobile = false }) 
                 </button>
             </nav>
             {backdrop}
+            {dropdown}
         </>
     );
 }
+

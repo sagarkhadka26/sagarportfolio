@@ -36,6 +36,7 @@ export default function Home() {
   };
 
   const [greeting, setGreeting] = useState('');
+  const [showPillNav, setShowPillNav] = useState(false);
 
   // Ref for the Works section to trigger animation only on scroll
   const worksRef = useRef(null);
@@ -45,8 +46,27 @@ export default function Home() {
     setGreeting(getGreeting());
   }, []);
 
+  // Scroll-triggered floating hamburger nav for the homepage
+  useEffect(() => {
+    let lastState = false;
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 400;
+      if (isScrolled !== lastState) {
+        setShowPillNav(isScrolled);
+        lastState = isScrolled;
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
+      {/* Floating Hamburger Menu (appears on scroll) */}
+      <div className={`${styles.fixedPillNav} ${showPillNav ? styles.visible : ''}`}>
+        <Navbar forceMobile={true} />
+      </div>
+
       {/* Sticky Hero Section */}
       <section className={styles.heroWrapper}>
         <div className={styles.heroContainer}>

@@ -38,21 +38,9 @@ export default function ProjectCard({ project, index = 0 }) {
                 )}
             </div>
 
-            <div className={styles.metaRow}>
-                <span className={styles.metaItem}>UI/UX • FIGMA</span>
-                <span className={styles.metaLabel}>Website • {project.year}</span>
-            </div>
-
-            <div className={styles.progressTray}>
-                <div
-                    className={styles.progressBar}
-                    style={{ width: `100%` }}
-                />
-            </div>
 
             <div className={styles.content}>
                 <TextReveal text={project.title} tag="h3" className={styles.title} />
-                <p className={styles.description}>{project.description}</p>
 
                 <div className={styles.footer}>
                     <span className={styles.cta}>VIEW PROJECT ↗</span>

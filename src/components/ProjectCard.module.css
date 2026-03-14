@@ -81,32 +81,21 @@
 }
 
 .content {
-    display: grid;
-    grid-template-columns: 1fr auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     gap: 12px;
-    align-items: start;
 }
 
 .title {
     font-size: 20px;
     font-weight: 600;
     color: var(--text-primary);
-    margin: 0 0 4px 0;
-    grid-column: 1;
-}
-
-.description {
-    font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.5;
     margin: 0;
-    grid-column: 1;
 }
 
 .footer {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-    padding-top: 4px;
+    flex-shrink: 0;
 }
 
 .cta {
