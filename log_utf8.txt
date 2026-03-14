@@ -1,0 +1,29 @@
+﻿commit f12216e7c48bb96977c55f04a61e0b470f79b92e
+Author: sagarkhadka26 <sagarkhadka.uiux.designer@gmail.com>
+Date:   Fri Mar 13 21:00:09 2026 +0545
+
+    Moved image down on the page
+
+commit 96fd50ab85989d9f2b69bb709d8c4dcc5f66e4f7
+Author: sagarkhadka26 <sagarkhadka.uiux.designer@gmail.com>
+Date:   Fri Mar 13 20:53:45 2026 +0545
+
+    Updated background color and sagar.png
+
+commit 45617071084cdc1ad6686f424efaed2b7218b8c3
+Author: sagarkhadka26 <sagarkhadka.uiux.designer@gmail.com>
+Date:   Fri Mar 13 20:44:29 2026 +0545
+
+    Updated sagar.png image
+
+commit d5f022564d0d2a48cf652c36b4d3bf3c27658225
+Author: sagarkhadka26 <sagarkhadka.uiux.designer@gmail.com>
+Date:   Fri Mar 13 19:56:58 2026 +0545
+
+    Updated sagar.png image
+
+commit dd806467556323f4e35b34bb89ea88d4661c2881
+Author: sagarkhadka26 <sagarkhadka.uiux.designer@gmail.com>
+Date:   Fri Mar 13 19:27:45 2026 +0545
+
+    Updated sagar.png image

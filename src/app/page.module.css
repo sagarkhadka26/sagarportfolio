@@ -189,7 +189,7 @@
 /* Center: Image Area — Avatar properly touches the bottom bounding box and is dead-center */
 .heroImage {
   position: absolute;
-  bottom: 0px;
+  bottom: -60px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -469,6 +469,31 @@
   padding: 40px;
   border-radius: 20px;
   text-align: center;
+}
+
+/* Responsive — Smaller Desktop / Zoom Adjustments */
+@media (max-width: 1600px) {
+  .heroImage {
+    bottom: -100px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .heroImage {
+    bottom: -140px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .heroImage {
+    bottom: -180px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .heroImage {
+    bottom: 0px;
+  }
 }
 
 /* Responsive — Tablet */

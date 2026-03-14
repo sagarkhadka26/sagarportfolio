@@ -1,0 +1,80 @@
+﻿diff --git a/src/app/page.js b/src/app/page.js
+index eb6d1aa..6b6fda9 100644
+--- a/src/app/page.js
++++ b/src/app/page.js
+@@ -35,13 +35,29 @@ export default function Home() {
+   };
+ 
+   const [greeting, setGreeting] = useState('');
++  const [showPillNav, setShowPillNav] = useState(false);
+ 
+   useEffect(() => {
+     setGreeting(getGreeting());
++    
++    let lastState = false;
++    const handleScroll = () => {
++      const isScrolled = window.scrollY > 400;
++      if (isScrolled !== lastState) {
++        setShowPillNav(isScrolled);
++        lastState = isScrolled;
++      }
++    };
++    window.addEventListener('scroll', handleScroll, { passive: true });
++    return () => window.removeEventListener('scroll', handleScroll);
+   }, []);
+ 
+   return (
+     <>
++      {/* Global Pill Nav (Floating) ΓÇö Synchronized with PageBox */}
++      <div className={`${styles.fixedPillNav} ${showPillNav ? styles.visible : ''}`}>
++        <Navbar forceMobile={true} />
++      </div>
+       {/* Sticky Hero Section */}
+       <section className={styles.heroWrapper}>
+         <div className={styles.heroContainer}>
+diff --git a/src/app/page.module.css b/src/app/page.module.css
+index 360d953..07dbfdf 100644
+--- a/src/app/page.module.css
++++ b/src/app/page.module.css
+@@ -13,12 +13,14 @@
+   z-index: 2000;
+   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+   pointer-events: none;
++  visibility: hidden;
+ }
+ 
+ .fixedPillNav.visible {
+   transform: translateY(0);
+   opacity: 1;
+   pointer-events: auto;
++  visibility: visible;
+ }
+ 
+ /* --- Hero Layout --- */
+diff --git a/src/components/PageBox.module.css b/src/components/PageBox.module.css
+index 21994be..fcd023d 100644
+--- a/src/components/PageBox.module.css
++++ b/src/components/PageBox.module.css
+@@ -6,7 +6,6 @@
+     display: flex;
+     justify-content: center;
+     position: relative;
+-    z-index: 1;
+ }
+ 
+ .card {
+@@ -69,12 +68,14 @@
+     z-index: 2000;
+     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+     pointer-events: none;
++    visibility: hidden;
+ }
+ 
+ .fixedPillNav.visible {
+     transform: translateY(0);
+     opacity: 1;
+     pointer-events: auto;
++    visibility: visible;
+ }
+ 
+ .logo {
