@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import TextReveal from './TextReveal';
 import styles from './ProjectCard.module.css';
 
 export default function ProjectCard({ project, index = 0 }) {
@@ -50,7 +51,7 @@ export default function ProjectCard({ project, index = 0 }) {
             </div>
 
             <div className={styles.content}>
-                <h3 className={styles.title}>{project.title}</h3>
+                <TextReveal text={project.title} tag="h3" className={styles.title} />
                 <p className={styles.description}>{project.description}</p>
 
                 <div className={styles.footer}>

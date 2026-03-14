@@ -4,6 +4,7 @@ import { socials, contactInfo } from '@/lib/socials';
 import { toolIcons } from '@/lib/toolIcons';
 import PageBox from '@/components/PageBox';
 import ScrollReveal from '@/components/ScrollReveal';
+import TextReveal from '@/components/TextReveal';
 import Footer from '@/components/Footer';
 import { useToast } from '@/components/Toast';
 import Image from 'next/image';
@@ -22,7 +23,7 @@ export default function ContactPage() {
             <PageBox>
                 <div className={styles.pageHeader}>
                     <ScrollReveal>
-                        <h1 className={styles.pageTitle}>Let&apos;s Connect</h1>
+                        <TextReveal text="Let's Connect" tag="h1" className={styles.pageTitle} />
                         <p className={styles.pageSubtitle}>
                             Have a project in mind? Let&apos;s build something meaningful together.
                         </p>
@@ -38,7 +39,7 @@ export default function ContactPage() {
                                 <span>Kathmandu, Nepal</span>
                             </div>
 
-                            <h2 className={styles.contactHeading}>Get in touch</h2>
+                            <TextReveal text="Get in touch" tag="h2" className={styles.contactHeading} />
 
                             <div className={styles.contactMethods}>
                                 <div className={styles.methodItem}>
@@ -73,7 +74,7 @@ export default function ContactPage() {
                     {/* Right: Social Links */}
                     <ScrollReveal delay={100}>
                         <div className={styles.socialCard}>
-                            <h3 className={styles.socialHeading}>Socials</h3>
+                            <TextReveal text="Socials" tag="h3" className={styles.socialHeading} />
                             <div className={styles.socialGrid}>
                                 {socials.map((social) => (
                                     <a
@@ -101,19 +102,19 @@ export default function ContactPage() {
                 <div className={styles.servicesGrid}>
                     <ScrollReveal delay={100}>
                         <div className={styles.serviceItem}>
-                            <h3>UI/UX Design</h3>
+                            <TextReveal text="UI/UX Design" tag="h3" />
                             <p>Crafting intuitive and visually stunning interfaces for web and mobile products.</p>
                         </div>
                     </ScrollReveal>
                     <ScrollReveal delay={200}>
                         <div className={styles.serviceItem}>
-                            <h3>Web Development</h3>
+                            <TextReveal text="Web Development" tag="h3" />
                             <p>Building responsive and high-performance websites using the latest technologies.</p>
                         </div>
                     </ScrollReveal>
                     <ScrollReveal delay={300}>
                         <div className={styles.serviceItem}>
-                            <h3>Product Strategy</h3>
+                            <TextReveal text="Product Strategy" tag="h3" />
                             <p>Defining the roadmap and user journey to ensure your product hits the mark.</p>
                         </div>
                     </ScrollReveal>
@@ -137,7 +138,7 @@ export default function ContactPage() {
                             ))}
                         </div>
 
-                        <h2>Have a specific project in mind?</h2>
+                        <TextReveal text="Have a specific project in mind?" tag="h2" />
                         <p>I&apos;m currently available for freelance projects and full-time opportunities.</p>
                         <a href={`mailto:${contactInfo.email}`} className={styles.ctaButton}>
                             Start a Conversation

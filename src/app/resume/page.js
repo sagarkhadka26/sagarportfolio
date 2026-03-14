@@ -90,13 +90,13 @@ export default function ResumePage() {
                     <div className={styles.mainContent}>
                         <section className={styles.section}>
                             <ScrollReveal>
-                                <h2 className={styles.sectionHeading}>Professional Experience</h2>
+                                <TextReveal text="Professional Experience" tag="h2" className={styles.sectionHeading} />
                                 <div className={styles.timeline}>
                                     {experience.map((item, i) => (
                                         <div key={i} className={styles.timelineItem}>
                                             <div className={styles.timelineDot} />
                                             <div className={styles.entryHeader}>
-                                                <h3 className={styles.entryTitle}>{item.role}</h3>
+                                                <TextReveal text={item.role} tag="h3" className={styles.entryTitle} />
                                                 <span className={styles.entryPeriod}>{item.period}</span>
                                             </div>
                                             <p className={styles.entryCompany}>{item.company}</p>
@@ -109,13 +109,13 @@ export default function ResumePage() {
 
                         <section className={styles.section}>
                             <ScrollReveal delay={100}>
-                                <h2 className={styles.sectionHeading}>Education</h2>
+                                <TextReveal text="Education" tag="h2" className={styles.sectionHeading} />
                                 <div className={styles.timeline}>
                                     {education.map((item, i) => (
                                         <div key={i} className={styles.timelineItem}>
                                             <div className={styles.timelineDot} />
                                             <div className={styles.entryHeader}>
-                                                <h3 className={styles.entryTitle}>{item.degree}</h3>
+                                                <TextReveal text={item.degree} tag="h3" className={styles.entryTitle} />
                                                 <span className={styles.entryPeriod}>{item.period}</span>
                                             </div>
                                             <p className={styles.entryCompany}>{item.institution}</p>
@@ -130,7 +130,7 @@ export default function ResumePage() {
                     <aside className={styles.sidebar}>
                         <ScrollReveal delay={200}>
                             <div className={styles.sidebarSection}>
-                                <h2 className={styles.sidebarHeading}>Core Skills</h2>
+                                <TextReveal text="Core Skills" tag="h2" className={styles.sidebarHeading} />
                                 <div className={styles.pillGrid}>
                                     {skills.map((skill) => (
                                         <span key={skill} className={styles.pill}>{skill}</span>
@@ -139,7 +139,7 @@ export default function ResumePage() {
                             </div>
 
                             <div className={styles.sidebarSection}>
-                                <h2 className={styles.sidebarHeading}>Software & Tools</h2>
+                                <TextReveal text="Software & Tools" tag="h2" className={styles.sidebarHeading} />
                                 <div className={styles.toolList}>
                                     {toolIcons.map((tool) => (
                                         <div key={tool.name} className={styles.toolItem}>

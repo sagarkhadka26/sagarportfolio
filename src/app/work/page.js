@@ -13,9 +13,9 @@ export default function WorkPage() {
             <PageBox>
                 <div className={styles.pageHeader}>
                     <TextReveal
-                        text="Work"
+                        text="My Projects"
                         tag="h1"
-                        className={styles.pageTitle}
+                        className={styles.title}
                         delay={100}
                     />
                     <ScrollReveal delay={300}>

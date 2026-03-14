@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { socials, contactInfo } from '@/lib/socials';
 import ScrollReveal from './ScrollReveal';
+import TextReveal from './TextReveal';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -9,9 +10,7 @@ export default function Footer() {
             <div className={styles.container}>
                 <ScrollReveal delay={100}>
                     <div className={styles.content}>
-                        <h2 className={styles.heading}>
-                            Lets build meaningful digital experiences together
-                        </h2>
+                        <TextReveal text="Lets build meaningful digital experiences together" tag="h2" className={styles.heading} />
 
                         <div className={styles.contactSocialRow}>
                             <div className={styles.leftPillGroup}>

@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useInView } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
@@ -35,6 +36,10 @@ export default function Home() {
   };
 
   const [greeting, setGreeting] = useState('');
+
+  // Ref for the Works section to trigger animation only on scroll
+  const worksRef = useRef(null);
+  const worksInView = useInView(worksRef, { once: true, margin: "-100px" });
 
   useEffect(() => {
     setGreeting(getGreeting());
@@ -157,33 +162,18 @@ export default function Home() {
           <div className={styles.worksCard}>
             <div className={styles.worksInner}>
               <div className={styles.glowEffect} />
-              <div className={styles.worksHeader}>
-                <ScrollReveal>
-                  <h2 className={styles.sectionTitle}>
-                    {"From Idea to Interface".split(" ").map((word, i) => (
-                      <span
-                        key={i}
-                        className={`${styles.boomWord} ${styles.boomRevealed}`}
-                        style={{ animationDelay: `${i * 0.1}s` }}
-                      >
-                        {word}&nbsp;
-                      </span>
-                    ))}
-                  </h2>
-                </ScrollReveal>
-                <ScrollReveal delay={400}>
-                  <p className={styles.sectionSubTitle}>
-                    {"Here are some of my Projects".split(" ").map((word, i) => (
-                      <span
-                        key={i}
-                        className={`${styles.boomWord} ${styles.boomRevealed}`}
-                        style={{ animationDelay: `${(i + 4) * 0.1}s` }}
-                      >
-                        {word}&nbsp;
-                      </span>
-                    ))}
-                  </p>
-                </ScrollReveal>
+              <div className={styles.worksHeader} ref={worksRef}>
+                <TextReveal
+                  text="From Idea to Interface"
+                  tag="h2"
+                  className={styles.sectionTitle}
+                  style={{ color: '#000000' }}
+                />
+                <TextReveal
+                  text="Here are some of my Projects"
+                  tag="p"
+                  className={styles.sectionSubTitle}
+                />
               </div>
 
               {/* Unified component handles filtering, grid, and empty states */}

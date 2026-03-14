@@ -113,7 +113,7 @@ export default function AboutPage() {
                         <div className={styles.mainContent}>
                             <ScrollReveal>
                                 <section className={styles.bioSection}>
-                                    <h3 className={styles.sectionLabel}>My Story</h3>
+                                    <TextReveal text="My Story" tag="h3" className={styles.sectionLabel} />
                                     <p className={styles.bioText}>
                                         Based in Kathmandu, Nepal, my journey into design started with a simple curiosity about how technology impacts people. Today, I specialize in creating clean, minimal aesthetics that solve complex problems.
                                     </p>
@@ -125,7 +125,7 @@ export default function AboutPage() {
 
                             <ScrollReveal delay={100}>
                                 <section className={styles.approachSection}>
-                                    <h3 className={styles.sectionLabel}>My Approach</h3>
+                                    <TextReveal text="My Approach" tag="h3" className={styles.sectionLabel} />
                                     <div className={styles.valuesGrid}>
                                         {values.map((v, i) => (
                                             <div key={i} className={styles.valueCard}>
@@ -172,7 +172,7 @@ export default function AboutPage() {
                 {/* === Tool Icons Moved Outside === */}
                 <ScrollReveal delay={100}>
                     <div className={styles.toolsSection}>
-                        <h3 className={`${styles.sectionLabel} ${styles.cleanLabel}`}>Current Stack</h3>
+                        <TextReveal text="Current Stack" tag="h3" className={`${styles.sectionLabel} ${styles.cleanLabel}`} />
                         <div className={styles.toolsList}>
                             {toolIcons.map((tool, i) => (
                                 <div key={i} className={styles.toolIconWrapper}>
@@ -198,7 +198,7 @@ export default function AboutPage() {
                 <ScrollReveal>
                     <div className={styles.beyondSection}>
                         <div className={styles.beyondHeader}>
-                            <h2>Beyond Design</h2>
+                            <TextReveal text="Beyond Design" tag="h2" />
                             <p className={styles.beyondSubtitle}>When I&apos;m not pushing pixels, you&apos;ll find me...</p>
                         </div>
                         <div className={styles.interestsGrid}>
@@ -244,7 +244,7 @@ export default function AboutPage() {
                             ))}
                         </div>
 
-                        <h2>Let&apos;s build something great together.</h2>
+                        <TextReveal text="Let's build something great together." tag="h2" />
                         <p>I&apos;m always open to new opportunities and exciting projects.</p>
                         <Link href="/contact" className={styles.ctaButton}>
                             Get in Touch <span>→</span>
