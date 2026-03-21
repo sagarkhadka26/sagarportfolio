@@ -20,14 +20,14 @@ export default function WorkPage() {
                     />
                     <ScrollReveal delay={300}>
                         <p className={styles.pageSubtitle}>
-                            A collection of projects I&apos;ve designed — from web products to mobile experiences.
+                            A collection of my recent projects and design work.
                         </p>
                     </ScrollReveal>
                 </div>
 
                 <div className={styles.projectsWrapper}>
                     {/* Unified component handles filtering and grid */}
-                    <ProjectsGrid initialCategory="Web Products" />
+                    <ProjectsGrid showFilter={false} initialCategory="All" />
                 </div>
             </PageBox>
 

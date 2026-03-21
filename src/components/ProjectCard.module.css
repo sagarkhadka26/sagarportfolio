@@ -17,7 +17,7 @@
 .imageWrapper {
     width: 100%;
     aspect-ratio: 16 / 8.5;
-    border-radius: 10px;
+    border-radius: 8px;
     overflow: hidden;
     background-color: #f0f0f0;
     margin-bottom: 16px;

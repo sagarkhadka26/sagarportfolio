@@ -63,22 +63,14 @@ export default async function ProjectDetail({ params }) {
                 <article className={styles.article}>
                     {/* Project Header */}
                     <div className={styles.projectHeader}>
-                        <ScrollReveal>
-                            <span className={styles.category}>{project.category}</span>
-                        </ScrollReveal>
+
                         <TextReveal
                             text={project.title}
                             tag="h1"
                             className={styles.title}
                             delay={100}
                         />
-                        <ScrollReveal delay={500}>
-                            <div className={styles.meta}>
-                                <span>{project.year}</span>
-                                <span className={styles.metaDivider}>•</span>
-                                <span>{project.tools.join(', ')}</span>
-                            </div>
-                        </ScrollReveal>
+
                     </div>
 
                     {/* Hero Image */}

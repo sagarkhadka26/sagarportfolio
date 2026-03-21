@@ -7,7 +7,7 @@ import { getProjectsByCategory } from '@/lib/projects';
 import styles from './ProjectsGrid.module.css';
 
 export default function ProjectsGrid({
-    initialCategory = 'Web Products',
+    initialCategory = 'All',
     limit = null,
     showFilter = true
 }) {

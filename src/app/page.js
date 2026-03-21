@@ -156,7 +156,8 @@ export default function Home() {
 
               {/* Unified component handles filtering, grid, and empty states */}
               <ProjectsGrid
-                initialCategory="Web Products"
+                initialCategory="All"
+                showFilter={false}
                 limit={6}
               />
 
