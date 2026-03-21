@@ -2,24 +2,6 @@
    HOME PAGE STYLES — FINAL STABILIZED
    ======================================== */
 
-/* --- Fixed Pill Nav (Appears on Scroll) --- */
-.fixedPillNav {
-  position: fixed;
-  top: 24px;
-  right: 24px;
-  left: auto;
-  transform: translateY(-100px);
-  opacity: 0;
-  z-index: 2200;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  pointer-events: none;
-}
-
-.fixedPillNav.visible {
-  transform: translateY(0);
-  opacity: 1;
-  pointer-events: auto;
-}
 
 /* --- Hero Layout --- */
 .heroWrapper {
@@ -242,16 +224,11 @@
   /* Removed padding-bottom since icons are vertically centered now */
 }
 
-.iconLayout {
-  display: flex;
-  flex-direction: column;
+.iconGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-}
-
-.iconRow {
-  display: flex;
-  gap: 16px;
-  justify-content: flex-end;
+  justify-items: center;
 }
 
 .toolIconWrapper {
@@ -528,8 +505,9 @@
     /* Add some padding back for stacked mobile view */
   }
 
-  .iconRow {
-    justify-content: center;
+  .iconGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
   }
 
   .heroName {

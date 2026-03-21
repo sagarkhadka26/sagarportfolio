@@ -10,7 +10,7 @@
 }
 
 .card {
-    width: calc(100vw - 100px) !important;
+    width: calc(100vw - 100px);
     /* Exactly 100vw minus 50px on each side */
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
@@ -19,8 +19,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    /* Ensure glow doesn't spill */
+    will-change: transform;
 }
 
 /* Subtle neutral radial glow to mimic Hero section depth */
@@ -58,24 +57,6 @@
     margin-bottom: 40px;
 }
 
-/* --- Floating Pill Nav (Appears on Scroll) --- */
-.fixedPillNav {
-    position: fixed;
-    top: 24px;
-    right: 24px;
-    left: auto;
-    transform: translateY(-100px);
-    opacity: 0;
-    z-index: 2200;
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    pointer-events: none;
-}
-
-.fixedPillNav.visible {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
-}
 
 .logo {
     width: 60px;

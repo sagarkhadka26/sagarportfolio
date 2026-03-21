@@ -6,14 +6,15 @@ export default function ScrollReveal({ children, className = '', delay = 0 }) {
     return (
         <motion.div
             className={className}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{
-                duration: 0.8,
-                delay: delay / 1000, // Convert ms to seconds if delay is passed in ms, or handle as needed
-                ease: [0.16, 1, 0.3, 1] // Custom easing
+                duration: 0.6,
+                delay: delay / 1000,
+                ease: [0.16, 1, 0.3, 1],
             }}
+            style={{ willChange: 'transform, opacity' }}
         >
             {children}
         </motion.div>

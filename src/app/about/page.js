@@ -31,18 +31,19 @@ function useCountUp(target, duration = 2000) {
 
     useEffect(() => {
         if (!started) return;
-        let start = 0;
-        const step = target / (duration / 16);
-        const timer = setInterval(() => {
-            start += step;
-            if (start >= target) {
-                setCount(target);
-                clearInterval(timer);
-            } else {
-                setCount(Math.floor(start));
+        
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            setCount(Math.floor(progress * target));
+            
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
             }
-        }, 16);
-        return () => clearInterval(timer);
+        };
+        
+        window.requestAnimationFrame(step);
     }, [started, target, duration]);
 
     return { count, ref };

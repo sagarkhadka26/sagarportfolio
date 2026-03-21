@@ -1,12 +1,20 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState, createContext, useContext } from 'react';
+import { usePathname } from 'next/navigation';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 
+const ScrollContext = createContext({ lenis: null });
+
+export const useScroll = () => useContext(ScrollContext);
+
 export default function SmoothScroll({ children }) {
+    const [lenis, setLenis] = useState(null);
+    const pathname = usePathname();
+
     useEffect(() => {
-        const lenis = new Lenis({
+        const lenisInstance = new Lenis({
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: 'vertical',
@@ -18,19 +26,32 @@ export default function SmoothScroll({ children }) {
             infinite: false,
         });
 
+        setLenis(lenisInstance);
+
         let rafId;
         function raf(time) {
-            lenis.raf(time);
+            lenisInstance.raf(time);
             rafId = requestAnimationFrame(raf);
         }
 
         rafId = requestAnimationFrame(raf);
 
         return () => {
-            lenis.destroy();
+            lenisInstance.destroy();
             if (rafId) cancelAnimationFrame(rafId);
         };
     }, []);
 
-    return <>{children}</>;
+    // Scroll to top on route change
+    useEffect(() => {
+        if (lenis) {
+            lenis.scrollTo(0, { immediate: true });
+        }
+    }, [pathname, lenis]);
+
+    return (
+        <ScrollContext.Provider value={{ lenis }}>
+            {children}
+        </ScrollContext.Provider>
+    );
 }

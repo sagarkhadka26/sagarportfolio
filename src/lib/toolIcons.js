@@ -3,8 +3,6 @@ export const toolIcons = [
     { name: 'Adobe XD', src: '/assets/icon/xd.svg' },
     { name: 'Photoshop', src: '/assets/icon/photoshop.svg' },
     { name: 'Framer', src: '/assets/icon/framer.svg' },
-    { name: 'Canva', src: '/assets/icon/canva.svg' },
     { name: 'JavaScript', src: '/assets/icon/js.svg' },
-    { name: 'Flutter', src: '/assets/icon/flutter.svg' },
     { name: 'Rive', src: '/assets/icon/rive.svg' },
 ];

@@ -1,0 +1,24 @@
+.fixedPillNav {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    left: auto;
+    transform: translateY(-100px);
+    opacity: 0;
+    z-index: 2200;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+.fixedPillNav.visible {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+@media (max-width: 768px) {
+    .fixedPillNav {
+        top: 16px;
+        right: 16px;
+    }
+}

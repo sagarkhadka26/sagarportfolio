@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { useInView } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
@@ -36,36 +35,16 @@ export default function Home() {
   };
 
   const [greeting, setGreeting] = useState('');
-  const [showPillNav, setShowPillNav] = useState(false);
 
-  // Ref for the Works section to trigger animation only on scroll
-  const worksRef = useRef(null);
-  const worksInView = useInView(worksRef, { once: true, margin: "-100px" });
+
 
   useEffect(() => {
     setGreeting(getGreeting());
   }, []);
 
-  // Scroll-triggered floating hamburger nav for the homepage
-  useEffect(() => {
-    let lastState = false;
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 400;
-      if (isScrolled !== lastState) {
-        setShowPillNav(isScrolled);
-        lastState = isScrolled;
-      }
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <>
-      {/* Floating Hamburger Menu (appears on scroll) */}
-      <div className={`${styles.fixedPillNav} ${showPillNav ? styles.visible : ''}`}>
-        <Navbar forceMobile={true} />
-      </div>
 
       {/* Sticky Hero Section */}
       <section className={styles.heroWrapper}>
@@ -118,43 +97,22 @@ export default function Home() {
                 {/* The Center Image (PLACEHOLDER FOR GRID) */}
                 <div aria-hidden="true" style={{ width: '100%', height: '100%' }} />
 
-                {/* Right: Icons with floating animation */}
                 <div className={styles.heroRight}>
-                  <div className={styles.iconLayout}>
-                    {/* Top Row: 4 icons */}
-                    <div className={styles.iconRow}>
-                      {toolIcons.slice(0, 4).map((tool, i) => (
-                        <ScrollReveal key={i} className={styles.toolIconWrapper}>
-                          <div className={styles.toolIconInner}>
-                            <Image
-                              src={tool.src}
-                              alt={tool.name}
-                              width={44}
-                              height={44}
-                              className={styles.toolIconImg}
-                            />
-                            <span className={styles.tooltip}>{tool.name}</span>
-                          </div>
-                        </ScrollReveal>
-                      ))}
-                    </div>
-                    {/* Bottom Row: 4 icons */}
-                    <div className={styles.iconRow}>
-                      {toolIcons.slice(4).map((tool, i) => (
-                        <ScrollReveal key={i} className={styles.toolIconWrapper}>
-                          <div className={styles.toolIconInner}>
-                            <Image
-                              src={tool.src}
-                              alt={tool.name}
-                              width={44}
-                              height={44}
-                              className={styles.toolIconImg}
-                            />
-                            <span className={styles.tooltip}>{tool.name}</span>
-                          </div>
-                        </ScrollReveal>
-                      ))}
-                    </div>
+                  <div className={styles.iconGrid}>
+                    {toolIcons.map((tool, i) => (
+                      <ScrollReveal key={i} className={styles.toolIconWrapper}>
+                        <div className={styles.toolIconInner}>
+                          <Image
+                            src={tool.src}
+                            alt={tool.name}
+                            width={44}
+                            height={44}
+                            className={styles.toolIconImg}
+                          />
+                          <span className={styles.tooltip}>{tool.name}</span>
+                        </div>
+                      </ScrollReveal>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -182,7 +140,7 @@ export default function Home() {
           <div className={styles.worksCard}>
             <div className={styles.worksInner}>
               <div className={styles.glowEffect} />
-              <div className={styles.worksHeader} ref={worksRef}>
+              <div className={styles.worksHeader}>
                 <TextReveal
                   text="From Idea to Interface"
                   tag="h2"

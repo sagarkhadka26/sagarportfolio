@@ -14,21 +14,15 @@ const navLinks = [
     { label: 'Contact', href: '/contact' },
 ];
 
-export default function Navbar({ shrinkOnScroll = false, forceMobile = false }) {
+export default function Navbar({ forceMobile = false }) {
     const pathname = usePathname();
     const [menuOpen, setMenuOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         setMounted(true);
-        if (!shrinkOnScroll) return;
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 150);
-        };
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [shrinkOnScroll]);
+    }, []);
+
 
     // Close menu on route change
     useEffect(() => {
@@ -60,7 +54,7 @@ export default function Navbar({ shrinkOnScroll = false, forceMobile = false }) 
 
     return (
         <>
-            <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''} ${forceMobile ? styles.forceMobile : ''}`}>
+            <nav className={`${styles.navbar} ${forceMobile ? styles.forceMobile : ''}`}>
                 {/* Only show inline navLinks when NOT in forceMobile mode */}
                 {!forceMobile && (
                     <ul className={`${styles.navLinks} ${menuOpen ? styles.open : ''}`}>

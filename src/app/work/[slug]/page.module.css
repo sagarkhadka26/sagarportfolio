@@ -71,9 +71,9 @@
 .heroImage {
     width: 100%;
     aspect-ratio: 16 / 9;
-    border-radius: 20px;
+    border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     border: 1px solid var(--border);
     background-color: var(--bg-surface);
 }
@@ -96,6 +96,13 @@
     font-weight: 500;
 }
 
+/* Figma link below image */
+.figmaLinkRow {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
 .description {
     max-width: 760px;
     margin: 0 auto 60px;
@@ -105,6 +112,69 @@
     font-size: 18px;
     line-height: 1.8;
     color: var(--text-secondary);
+}
+
+/* Metadata Cards */
+.metaGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 760px;
+    margin: 0 auto 60px;
+}
+
+.metaCard {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.metaLabel {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+}
+
+.metaValue {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* About / Challenge / Solution */
+.sectionBlock {
+    max-width: 760px;
+    margin: 0 auto 48px;
+}
+
+.sectionBlock .sectionLabel {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.sectionBlock p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+/* Action Buttons */
+.linkSection {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
 }
 
 .bottomSection {
@@ -137,6 +207,19 @@
     .title {
         font-size: 32px;
         letter-spacing: -1px;
+    }
+
+    .heroImage {
+        border-radius: 8px;
+    }
+
+    .metaGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .linkSection {
+        flex-direction: column;
+        align-items: center;
     }
 
     .projectNav {

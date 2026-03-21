@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
 import { ToastProvider } from '@/components/Toast';
 import SmoothScroll from '@/components/SmoothScroll';
+import GlobalNav from '@/components/GlobalNav';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
       <body>
         <ToastProvider>
           <SmoothScroll>
+            <GlobalNav />
             <div className="page-wrapper">
               {children}
             </div>
