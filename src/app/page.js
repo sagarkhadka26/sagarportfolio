@@ -3,10 +3,11 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import PencilReveal from '@/components/PencilReveal';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
-import ProjectsGrid from '@/components/ProjectsGrid';
+import ProjectsShowcase from '@/components/ProjectsShowcase';
 import TextReveal from '@/components/TextReveal';
 import { toolIcons } from '@/lib/toolIcons';
 import styles from './page.module.css';
@@ -118,15 +119,13 @@ export default function Home() {
               </div>
 
               <div className={styles.heroImage}>
-                <ScrollReveal>
-                  <Image
-                    src="/assets/images/sagar.png"
-                    alt="Sagar Kumar Khadka"
-                    width={800}
-                    height={800}
-                    priority
-                  />
-                </ScrollReveal>
+                <PencilReveal
+                  src="/assets/images/sagar.png"
+                  alt="Sagar Kumar Khadka"
+                  width={800}
+                  height={800}
+                  priority
+                />
               </div>
             </div>
           </div>
@@ -154,12 +153,8 @@ export default function Home() {
                 />
               </div>
 
-              {/* Unified component handles filtering, grid, and empty states */}
-              <ProjectsGrid
-                initialCategory="All"
-                showFilter={false}
-                limit={6}
-              />
+              {/* Interactive Showcase replaces the old filterable grid */}
+              <ProjectsShowcase />
 
               <ScrollReveal className={styles.viewAllWrapper}>
                 <Link href="/work" className={styles.viewAllBtn}>

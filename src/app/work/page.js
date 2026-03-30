@@ -2,9 +2,10 @@
 
 import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
-import ProjectsGrid from '@/components/ProjectsGrid';
+import ProjectsShowcase from '@/components/ProjectsShowcase';
 import PageBox from '@/components/PageBox';
 import TextReveal from '@/components/TextReveal';
+import { projects } from '@/lib/projects';
 import styles from './page.module.css';
 
 export default function WorkPage() {
@@ -26,8 +27,8 @@ export default function WorkPage() {
                 </div>
 
                 <div className={styles.projectsWrapper}>
-                    {/* Unified component handles filtering and grid */}
-                    <ProjectsGrid showFilter={false} initialCategory="All" />
+                    {/* Reusing the interactive showcase layout from the homepage */}
+                    <ProjectsShowcase projects={projects} />
                 </div>
             </PageBox>
 
