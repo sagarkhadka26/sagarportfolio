@@ -14,7 +14,7 @@ const DEFAULT_FEATURED_SLUGS = [
 ];
 
 export default function ProjectsShowcase({ projects: customProjects }) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(null);
   const carouselRef = useRef(null);
   const imageRefs = useRef([]);
 
@@ -66,7 +66,7 @@ export default function ProjectsShowcase({ projects: customProjects }) {
   if (showcaseProjects.length === 0) return null;
 
   return (
-    <div className={styles.showcase}>
+    <div className={styles.showcase} onMouseLeave={() => setActiveIndex(null)}>
       {/* LEFT COLUMN: Project Titles */}
       <div className={styles.titleList}>
         {showcaseProjects.map((project, index) => (

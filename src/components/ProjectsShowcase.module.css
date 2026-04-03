@@ -6,15 +6,15 @@
 .showcase {
   display: flex;
   align-items: center;
-  gap: 56px;
+  gap: 80px; /* Increased for cleaner spacing */
   width: 100%;
-  margin-top: 48px;
+  margin-top: 60px;
   position: relative;
 }
 
 /* --- Left Column: Project Titles --- */
 .titleList {
-  width: 40%;
+  width: 35%; /* Adjusted for 65/35 balance */
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -28,7 +28,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   cursor: pointer;
   text-decoration: none;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
   position: relative;
 }
@@ -38,26 +38,26 @@
 }
 
 .titleIndex {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
-  color: var(--text-muted);
-  opacity: 0.5;
+  color: var(--text-primary);
+  opacity: 0.8; /* Increased from 0.5 */
   min-width: 28px;
   transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
   font-variant-numeric: tabular-nums;
 }
 
 .titleText {
-  font-size: clamp(20px, 2.2vw, 28px);
-  font-weight: 600;
-  letter-spacing: -0.03em;
+  font-size: 20px; /* Set to 20px as requested */
+  font-weight: 500;
+  letter-spacing: -0.01em;
   line-height: 1.2;
   transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .titleArrow {
-  margin-left: auto;
-  font-size: 20px;
+  margin-left: 16px; /* Increased to 16px as requested */
+  font-size: 18px;
   opacity: 0;
   transform: translateX(-8px);
   transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -72,6 +72,11 @@
 .titleItemActive .titleIndex {
   color: var(--text-primary);
   opacity: 1;
+}
+
+.titleItemActive .titleText {
+  transform: scale(1.05);
+  transform-origin: left center;
 }
 
 .titleItemActive .titleArrow {
@@ -101,11 +106,11 @@
 
 /* --- Right Column: Image Grid --- */
 .imageGrid {
-  width: 60%;
+  width: 65%; /* Set to 65% as requested */
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-rows: min-content;
-  gap: 16px;
+  gap: 20px;
   position: relative;
   min-height: 420px;
 }
@@ -119,9 +124,9 @@
   text-decoration: none;
   display: block;
 
-  /* Default (inactive) state */
-  transform: scale(0.92);
-  opacity: 0.85;
+  /* Default (inactive) state — Removed scale-down and opacity */
+  transform: scale(1);
+  opacity: 1;
   filter: none;
   z-index: 1;
 
@@ -131,33 +136,27 @@
     box-shadow 500ms cubic-bezier(0.165, 0.84, 0.44, 1),
     z-index 0ms;
 
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06); /* Slightly deeper shadow */
+  border: 1px solid rgba(0, 0, 0, 0.16); /* Updated to 0.16 for sharper definition */
 }
 
-/* Staggered offset for editorial depth */
-.imageCard:nth-child(2) {
-  transform: scale(0.92) translateY(20px);
-}
-
-.imageCard:nth-child(3) {
-  transform: scale(0.92) translateY(-10px);
-}
-
+/* Staggered offset removed for cleaner grid layout */
+.imageCard:nth-child(2),
+.imageCard:nth-child(3),
 .imageCard:nth-child(4) {
-  transform: scale(0.92) translateY(10px);
+  transform: scale(1);
 }
 
-/* Active Image State — "First Place" effect with rotation */
+/* Active Image State — "First Place" effect with flat zoom */
 .imageCardActive {
-  transform: scale(1.25) rotate(4deg) !important;
+  transform: scale(1.15) !important; /* Clean zoom */
   opacity: 1;
   z-index: 50;
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2), 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15), 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 .imageCardActive:nth-child(even) {
-  transform: scale(1.25) rotate(-4deg) !important;
+  transform: scale(1.15) !important;
 }
 
 /* Inner image styling */
@@ -279,23 +278,23 @@
     scroll-snap-align: center;
     aspect-ratio: 16 / 10;
 
-    /* Reset transforms for carousel */
-    transform: scale(0.92) !important;
-    opacity: 0.7;
-    filter: grayscale(20%);
+    /* Reset transforms for carousel — full opacity */
+    transform: scale(1) !important;
+    opacity: 1;
+    filter: none;
   }
 
   .imageCard:nth-child(2),
   .imageCard:nth-child(3),
   .imageCard:nth-child(4) {
-    transform: scale(0.92) !important;
+    transform: scale(1) !important;
   }
 
   .imageCardActive {
     transform: scale(1) !important;
     opacity: 1;
-    filter: grayscale(0%);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    filter: none;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
   }
 }
 
